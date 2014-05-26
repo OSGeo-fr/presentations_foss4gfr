@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+
+<div class="slides">
+    <section class="" data-id="21dd9b22f12158a2cdaa895027bce946">
+        <h1>
+    <span style="font-size: 72px;">Générateur<br>de&nbsp;Formulaires</span>
+</h1>
+<div>
+<span style="font-style: normal; font-variant: normal;">
+        <font style="font-size: 24px;">By Chinook</font>
+    </span>
+    <br>
+</div>
+<div style="max-height: none; max-width: none;">
+</div>
+<div>
+    <br>
+</div>
+<div>
+    <b>
+    <br>
+</b>
+</div>
+<div class="absolute-element" style="position: absolute; width: 216.0172935581496px; height: 125px; z-index: 4; left: 23px; top: 573px; max-height: none; max-width: none;">
+    <img src="img/logo-osgeofr.png">
+    <b>
+    <br>
+</b>
+</div>
+<div>
+    <b>
+    <br>
+</b>
+</div>
+<div>
+    <b>
+    <br>
+</b>
+</div>
+<div>
+    <b>FOSS4G-FR</b>
+    <br>
+</div>
+<div>
+    <font color="#cccccc" style="font-size: 24px;">ENSG, Marne-la-Vallée - 2014</font>
+    <br>
+</div>
+<h1 style="font-style: normal; font-variant: normal; position: absolute; width: 178.49631449631448px; height: 251px; z-index: 4; left: 753px; top: 455px; max-height: none; max-width: none;" class="absolute-element">
+    <img src="img/logo.png" style="font-size: 72px; max-width: none; max-height: none; width: 137.30066310733568px; height: 195.75757577749278px;">&nbsp;</h1>
+    <p style="font-style: normal; font-variant: normal;">
+    <br>
+</p>
+    <h1 style="font-style: normal; font-variant: normal;">
+    </h1>
+    <h1 style="font-style: normal; font-variant: normal;">
+    </h1>
+    <h1 style="font-style: normal; font-variant: normal;">
+    </h1>
+    <h1 style="font-style: normal; font-variant: normal;">
+    </h1>
+
+
+<br>
+</section>
+<section class="" data-id="24a2ee34de221cf466839d3209c70049">
+    <h2>Intro</h2>
+<p style="font-size: 32px; font-style: normal; font-variant: normal; text-align: left;">
+<img src="img/logo.gif" style="vertical-align: middle; width: 53.16567221867701px; height: 69.99610872182092px;">&nbsp;Chinook : Framework de Gestion de données Cartographique<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="http://chinook.memoris.fr/" target="_blank">chinook.memoris.fr</a>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="https://adullact.net/projects/chinookgs/" target="_blank">adullact.net/projects/chinookgs</a>
+<br>
+</p>
+    <br>
+<div style="text-align: left; ">
+<img src="img/logomemoris.png" style="vertical-align:middle">&nbsp;<a href="http://www.memoris.fr" target="_blank">www.memoris.fr</a>
+</div>
+<div style="text-align: left; ">
+    <br>
+
+
+<p style="text-align: left;">
+</p>
+<p style="text-align: left;">
+<span>&nbsp;</span>
+    <img src="img/imhere.png" style="width: 53.924553326354705px; height: 52.18122972253843px; max-height: none; max-width: none; vertical-align: middle;">
+    <span>Julien MARGAIL</span>
+</p>
+<p style="text-align: left;">
+<span>&nbsp; &nbsp; j.margail@memoris.fr<br>
+    </span>&nbsp; &nbsp;&nbsp;<img src="img/Twitter_logo_blue.png" style="width: 44px; height: 34px;vertical-align:middle;margin:0;">&nbsp;<a href="https://twitter.com/jmargail" class="twitter-follow-button" data-show-count="false" data-lang="fr" target="_blank">@jmargail</a>
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+    <section class="stack" data-id="3a522243059a7cef7b3bcadfa7a3b712">
+        <section class="" data-id="be189e58503b8004e0cae5f99e993369">
+            <h2>Chinook</h2>
+
+<div style="text-align: left; ">
+<div>
+            <br>
+        </div>
+    <ul>
+        <ul>
+            <li>Publier : Serveur WMS / WFS</li>
+</ul>
+    </ul>
+    <div>
+        <br>
+    </div>
+    <ul>
+        <ul>
+            <li>Visualiser : Applications de consultation WebSIG</li>
+<ul>
+    <li>Sélections, Recherches, Impressions</li>
+</ul>
+        </ul>
+    </ul>
+    <div>
+        <br>
+    </div>
+    <ul>
+        <ul>
+            <li>Editer : Saisie géométrique et attributaire</li>
+</ul>
+    </ul>
+    <div>
+        <br>
+    </div>
+    <ul>
+        <ul>
+            <li>Administrer : Interface d'administration</li>
+<ul>
+        <li>Couches, Contextes, Utilisateurs, Droits, Interfaces ...</li>
+    </ul>
+        </ul>
+    </ul>
+    <div>
+        <br>
+    </div>
+</div>
+
+</section>
+    <section class="" data-id="ba6db69f8699a6d35c62e1596f8939ba">
+        <h2>Architecture</h2>
+<div>
+        <br>
+    </div>
+<div style="text-align: left; ">
+<div style="font-size: 36.27827453613281px; font-style: normal; font-variant: normal;">
+<ul>
+<li>Architecture orientée WebServices</li>
+<ul>
+<li>Standards OGC (WMS, WFS, SLD, WMC)</li>
+<li>Authentification</li>
+<li>Interfaces</li>
+<li>Formulaires</li>
+<li>...</li>
+</ul>
+</ul>
+<div>
+    <br>
+</div>
+<ul>
+<li>Construit autour des librairies Open Source</li>
+</ul>
+</div>
+<div style="text-align: center;">
+<img src="img/opensource-logo.png" style="font-size: 36.27827453613281px; font-style: normal; font-variant: normal; max-width: none; max-height: none; text-align: center; width: 116.32249033352542px; height: 100.09816481382278px;">
+</div>
+</div>
+</section>
+<section class="" data-id="3f80ca767ddce8554540683bf294c4fe">
+    <h2>Librairies</h2>
+<div>
+    <br>
+</div>
+<div style="text-align: left; position: absolute; width: 103px; height: 46px; z-index: 4; left: 222px; top: 135px;" class="absolute-element">
+    <b>Client</b>
+</div>
+<div class="absolute-element" style="position: absolute; width: 165px; height: 92px; z-index: 4; left: 368px; top: 200px;">
+    <ul>
+        <li style="text-align: left;">
+            <font style="font-size: 32px;">
+<font>
+                <span style="text-align: center;">OpenLayers</span>
+                <br>
+            </font>
+        </font>
+</li>
+        <li style="text-align: left; ">
+            <span style="text-align: center;">
+<font style="font-size: 32px;">
+                <font>Ext.js</font>
+            </font>
+</span>
+            <br>
+        </li>
+    </ul>
+</div>
+<img src="img/OpenLayers.trac.png" class="absolute-element" style="position: absolute; max-height: none; max-width: none; width: 55px; height: 50px; z-index: 4; left: 573px; top: 186px;">
+<img src="img/extjs.gif" style="width: 60px; height: 60px; max-height: none; max-width: none; position: absolute; z-index: 5; left: 619px; top: 220px;" class="absolute-element">
+<div>
+    <br>
+</div>
+<div>
+    <br>
+</div>
+<div style="text-align: left; position: absolute; width: 112px; height: 46px; z-index: 4; left: 222px; top: 366px;" class="absolute-element">
+    <b>Server</b>
+</div>
+<div class="absolute-element" style="position: absolute; width: 372px; height: 92px; z-index: 4; left: 368px; top: 427px;">
+    <ul>
+        <li>
+            <font style="font-size: 32px;">
+<font>
+                <span style="text-align: center;">MapServer / MapCache</span>
+                <br>
+            </font>
+        </font>
+</li>
+        <li>
+            <span style="text-align: center;">
+<font style="font-size: 32px;">
+                <font>Zend Framework</font>
+            </font>
+</span>
+            <br>
+        </li>
+    </ul>
+</div>
+<img src="img/mapserver-logo.png" class="absolute-element" style="position: absolute; max-height: none; max-width: none; width: 50.58930911161233px; height: 49.79385410106136px; z-index: 4; left: 746px; top: 410px;">
+<img src="img/zf_logo.jpg" style="width: 54.90424958912553px; height: 38.40204872334049px; max-height: none; max-width: none; position: absolute; z-index: 4; left: 805px; top: 464px;" class="absolute-element">
+
+</section>
+</section>
+<section class="stack" data-id="30860990c64ebdecb3692af48cf5145b">
+    <section class="" data-id="19d1a985d26163182b2a5e74ebe2512a">
+<h2>Formulaires <font style="font-size: 24px;">(forms)</font>
+</h2>
+
+    <div style="text-align: left;">
+<span>Le Hello World du formulaire</span>
+</div>
+
+<div style="text-align: left; ">
+<pre><code style="max-height:450px">"name": "departement.default",
+"description": "Fiche test de description des départements...",
+"window": {
+    "title": "Fiche Département",
+    "width": 600,
+    "height": 500
+},
+"form": {
+    "items": [{
+        "xtype": "ck_textfield",
+        "fieldLabel": "Code",
+        "name": "CODE_DEPT"
+    },{
+        "xtype": "ck_textfield",
+        "fieldLabel": "Nom",
+        "name": "NOM_DEPT"
+    }]
+}
+</code>    </pre>
+</div>
+<br>
+
+
+
+</section>
+    <section class="" data-id="197e34781689314ee525fa7dee783cc3">
+        <h2>Structure&nbsp;<span style="font-size: 24px;">(FORMS)</span>
+</h2>
+<div style="text-align: left; ">
+<ul>
+<li>1 fichier JSON</li>
+<ul>
+<li>Fiche de consultation</li>
+<li>Formulaire d'édition</li>
+</ul>
+</ul>
+<div>
+        <br>
+    </div>
+<ul>
+<li>1 fichier JSON</li>
+<ul>
+    <li>
+<span style="font-size: 36px; font-style: normal; font-variant: normal;">Formulaire de r</span>echerche</li>
+</ul>
+</ul>
+<div>
+<br>
+</div>
+<div>
+<ul>
+<li>
+<span style="font-size: 36px; font-style: normal; font-variant: normal;">Pour des formulaires complexes</span>
+</li>
+<ul>
+<li>1 fichier principal (associé à une couche)</li>
+<ul>
+<li>N sous-formulaires (jointures sur tables liées)</li>
+<li>N inclusions (@include)</li>
+</ul>
+
+</ul>
+
+</ul>
+</div>
+</div>
+</section>
+<section class="" data-id="8c5c2adf30b2634ddcf01af38234eebb">
+    <h2>Composants&nbsp;<span style="font-size: 24px;">(FORMS)</span>
+</h2>
+<div style="text-align: left; ">
+<ul>
+<li>texte / texte enrichi /&nbsp;<span>formule</span>
+</li>
+<li>listes de choix (hiérarchie, jointures)</li>
+<li>date</li>
+<li>fichiers (upload)</li>
+</ul>
+<div>
+    <br>
+</div>
+<ul>
+<li>tables (gridPanel) : affichage des relations 1-N</li>
+<ul>
+<li>point d'accès vers les sous-formulaires</li>
+</ul>
+</ul>
+<div>
+<br>
+</div>
+<div>
+<br>
+</div>
+<div>
+<ul>
+<li>Onglets (tabPanel)</li>
+<li>Colonnes (Layout columns)</li>
+</ul>
+</div>
+<div style="text-align: center; ">
+<br>
+</div>
+</div>
+</section>
+<section class="" data-id="32f4f764bb902be82903de2090e92b57">
+    <h2>Services&nbsp;<span style="font-size: 24px;">(FORMS)</span>
+</h2>
+<div>
+    <br>
+</div>
+<div style="text-align: left; ">
+<ul>
+<li>Forms : obtenir le descripteur JSON</li>
+<ul>
+<ul>
+    <li>Contrôle des droits sur les fiches et attributs</li>
+</ul>
+</ul>
+</ul>
+<div>
+<br>
+</div>
+<ul>
+<ul>
+<li>Data : alimenter le formulaire</li>
+<li>Store : initialiser les listes de choix</li>
+<li>Edit : éditer les données</li>
+</ul>
+</ul>
+<div>
+<br>
+</div>
+<ul>
+<ul>
+<li>Print : imprimer le formulaire en PDF</li>
+<li>Search : module de recherche</li>
+</ul>
+</ul>
+</div>
+</section>
+</section>
+<section class="stack" data-id="b2cc1651ab08b121d63a25541ca2ac28">
+    <section class="" data-id="dabb1928f5ff5f6c98ffe70bf7cf3d4f">
+        <h2>Administration</h2>
+<div>Création / Edition depuis l'interface graphique</div>
+<img src="img/ex_admin.png">
+    </section>
+    <section class="" data-id="fd2e75d78b34eee0e9d0810181f3329a">
+<h2>Code</h2>
+<div style="text-align: left; ">Fiche de consultation / édition</div>
+<div style="text-align: left;">
+<pre><code style="max-height:450px"> {
+  "name": "equipement.default",
+  "window" :{
+    "title": "Fiche Equipement",
+    "width": 600,
+    "height": 400
+  },
+  "form" :{
+    "labelWidth": 200,
+    "items": [{
+      "name": "nom"
+    },{
+      "xtype": "ck_combobox",
+      "editable": false,
+      "name": "type",
+      "children": ["form_equip_sous_type"]  
+    },{
+      "xtype": "ck_combobox",
+      "id" : "form_equip_sous_type",
+      "name": "ss_type"
+    },{
+      "name": "gest"
+    },{
+      "name": "numvoirie"
+    },{
+      "name": "ind_rep"
+    },{
+      "name": "libellevoi"
+    },{
+      "xtype": "ck_combobox",
+      "name": "libelleco",
+      "layer": "bd_communes",  
+      "displayField": "nom_com"
+    },{
+      "xtype": "ck_textfield",
+      "name": "bd_parcelle.comidpar",
+      "fieldLabel" : "identifiant parcelle",
+      "join" : "ST_Within(equipements.the_geom, bd_parcelle.the_geom)"
+    }]
+  } 
+}</code>    </pre>
+</div>
+<br>
+<br>
+</section>
+    <section class="" data-id="d81e06209a85fc7c5082d70836ea6943">
+        <h2>Résultat</h2>
+<div class="absolute-element" style="position: absolute; width: 201px; height: 46px; z-index: 4; left: 580px; top: 108px;">Consultation</div>
+<div>
+        <br>
+    </div>
+<div class="absolute-element" style="position: absolute; width: 115px; height: 46px; z-index: 8; left: 273px; top: 633px;">Edition</div>
+<img src="img/ex_consultation.png" class="absolute-element" style="position: absolute; max-height: none; max-width: none; width: 538.0409207161125px; height: 359px; z-index: 6; left: 11px; top: 95px;">
+    <img src="img/ex_edition.png" class="absolute-element" style="position: absolute; max-height: none; max-width: none; width: 517.0588235294117px; height: 345px; z-index: 7; left: 384px; top: 319px;">
+</section>
+<section class="" data-id="ed58614f82398d0f58cb17c086049a2a">
+<h2>Autre Exemple</h2>
+<div style="text-align: left; ">Formulaire de recherche</div>
+<div style="text-align: left; ">
+<pre><code style="max-height:450px">{
+  "name": "equipements.default",
+  "title": "EQUIPEMENTS",
+  "items": [{
+    "xtype": "ck_combobox",
+    "name": "libelleco",
+    "fieldLabel": "Commune"
+  },{
+    "xtype": "ck_combobox",
+    "name": "type",
+    "children": ["equipements_ss_type"],
+    "fieldLabel": "Type"
+  },{
+    "id": "equipements_ss_type",
+    "xtype": "ck_combobox",
+    "name": "ss_type",
+    "fieldLabel": "Sous Type"
+  }]
+}</code></pre>
+</div>
+<br>
+<img src="img/ex_equipement.png" class="absolute-element" style="position: absolute; max-height: none; max-width: none; width: 216.42857142857142px; height: 225px; z-index: 4; left: 711px; top: 401px;">
+
+</section>
+</section>
+<section class="" data-id="bb0e03809a3406949905a9871f5521ac">
+    <h2>Work in progress</h2>
+<div>
+<br>
+</div>
+<div style="text-align: left; ">
+    <ul>
+        <li>Générateur de formulaires - Administration</li>
+        <ul>
+            <li>Fonctionnalités</li>
+            <ul>
+                <li>prise en charge de N formulaires par couches</li>
+                <li>gestion des sous-formulaires</li>
+            </ul>
+        </ul>
+    </ul>
+    <div>
+        <br>
+    </div>
+    <ul>
+        <ul>
+            <li>Simplifications</li>
+            <ul>
+                <li>construction des jointures</li>
+                <li>paramétrage des tables (columns)</li>
+            </ul>
+        </ul>
+    </ul>
+    <div>
+        <br>
+    </div>
+    <div style="text-align: center; " class="fragment" data-fragment-index="0">
+        <font style="font-size: 54px;">Générateur d'application</font>
+    </div>
+</div>
+
+</section>
+    <section class="stack" data-id="39756de8b6ab6f965eece8a9ea182f49">
+        <section class="" data-id="c624070d1ce8fd8cd338ec0c5913ca78">
+            <h2>Ils l'utilisent</h2>
+<div>
+    <font style="font-size: 24px;">
+        <a href="http://public.geofoncier.fr" target="_blank">www.geofoncier.fr</a>
+    </font>
+</div>
+<img src="img/geofoncier.png">
+
+</section>
+            <section class="" data-id="e8998682395f7dae423b06fb0dc75408">
+                <h2 style="font-style: normal; font-variant: normal;">ILS L'UTILISENT</h2>
+<div>
+    <font style="font-size: 24px;">
+        <a href="http://geo.valdemarne.fr/viewer" target="_blank">geo.valdemarne.fr</a>
+    </font>
+    <br>
+</div>
+<img src="img/geo_valdemarne.png">
+
+</section>
+                <section class="" data-id="393ddfc5c7056a4fecad3c175c46a4a9">
+                    <h2 style="font-style: normal; font-variant: normal;">ILS L'UTILISENT</h2>
+<div>
+    <font style="font-size: 24px;">
+        <a href="http://www.ppige-npdc.fr/viewer" target="_blank">www.ppige-npdc.fr</a>
+    </font>
+</div>
+<img src="img/ppige.png">
+
+</section>
+                    <section class="" data-id="3720d2ded693df4112b298ff3f58e27e">
+                        <h2 style="font-style: normal; font-variant: normal;">ILS L'UTILISENT</h2>
+<div>
+    <font style="font-size: 24px;">
+        <a href="http://carto.nordpasdecalais.fr" target="_blank">carto.nordpasdecalais.fr</a>
+    </font>
+    <br>
+</div>
+<img src="img/carto_nordpasdecalais.png">
+</section>
+                        <section class="" data-id="e13d991e04bfeafcc448b053f6a689c3">
+                            <h2 style="font-style: normal; font-variant: normal;">ILS L'UTILISENT</h2>
+<div>
+    <a href="http://www.arch.nordpasdecalais.fr" target="_blank">
+        <font style="font-size: 24px;">www.arch.nordpasdecalais.fr</font>
+    </a>
+    <br>
+</div>
+<img src="img/arch_nordpasdecalais.png">
+</section>
+                            <section class="" data-id="5303ca4ffe7c8ae612597d0ed14989e4">
+                                <h2 style="font-style: normal; font-variant: normal;">ILS L'UTILISENT</h2>
+<div>
+    <font style="font-size: 24px;">
+        <a href="http://www.sigogne.org/carto" target="_blank">www.sigogne.org</a>
+    </font>
+    <br>
+</div>
+<img src="img/sigogne.png">
+
+<img src="img/sigogne.jpg" style="width: 193px; height: 55px; max-height: none; max-width: none; position: absolute; z-index: 4; left: 28px; top: 126px;" class="absolute-element">
+                            </section>
+                        </section>
+                        <section class="" data-id="16aec24b04effafacdfd0edb945732c1">
+                            <h2>MERCI</h2>
+<div>
+                            <br>
+                        </div>
+<div>
+                        <br>
+                    </div>
+<div>
+                    <br>
+                </div>
+<div>
+                <b>RoadMap</b>
+            </div>
+<div>
+            <br>
+        </div>
+<div>ChinooK 1.6 avec Générateur de Formulaire</div>
+<div>Été 2014</div>
+<div>
+        <br>
+    </div>
+<div>
+    <br>
+    </div>
+<div>ChinooK 2.0 avec Ol3, Ext 5.x et les autres</div>
+<div>Été 2015</div>
+</section>
+</div>
+
+
+            
+			<!-- Any section element inside of this container is displayed as a slide -->
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

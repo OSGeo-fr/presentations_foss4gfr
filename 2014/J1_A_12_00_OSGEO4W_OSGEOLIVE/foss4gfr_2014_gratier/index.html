@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.min.css"/>
+  <link rel="stylesheet" href="reveal.js/css/theme/osgeo.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css"/>
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="osgeo4w-et-osgeo-live-bien-aborder-lécosystème-géospatial-open-source-thomas-gratier" class="titleslide slide level1"><h1>OSGeo4W et OSGeo-Live: bien aborder l'écosystème Géospatial Open Source <br/><small style="color:#1166AD;">Thomas Gratier</small></h1></section></section>
+<section><section id="le-constat" class="titleslide slide level1"><h1>Le constat <br/><br/><img width="450" src="images/icon_22637.png" /></h1></section><section id="une-petite-histoire" class="slide level2">
+<h1>Une petite histoire</h1>
+<p>A l'époque des débuts de PostGIS, il n'existait pas d'installateur pour pouvoir le déployer sous Windows. Le seul moyen c'était de compiler avec MinGW.</p>
+<p><strong>Un utilisateur final non-technique n'a pas toujours le ticket d'entrée pour démarrer.</strong></p>
+</section><section id="de-nos-jours" class="slide level2">
+<h1>De nos jours</h1>
+<h3 id="le-positif">Le positif</h3>
+<p>Amélioration car il existe presque toujours un installateur Windows</p>
+<h3 id="le-négatif">Le négatif</h3>
+<p>Un écosystème côté logiciels SIG toujours fragmenté sous <a href="http://live.osgeo.org/fr/win_installers.html">Windows</a></p>
+<p>Une cible Windows mouvante: version de C++, architecture 32/64 bits, système d'exploitation</p>
+</section><section id="exemples-en-c-en-particulier" class="slide level2">
+<h1>Exemples (en C en particulier):</h1>
+<ul>
+<li><p>GDAL</p>
+<ul>
+<li><p><a href="http://fwtools.maptools.org">FWTools</a></p></li>
+<li><p><a href="http://gisinternals.com/sdk/">Gis Internals</a></p></li>
+</ul></li>
+<li><p>MapServer</p>
+<ul>
+<li><p><a href="http://www.maptools.org/ms4w/">MS4W</a></p></li>
+<li><p><a href="http://gisinternals.com/sdk/">Gis Internals</a></p></li>
+</ul></li>
+</ul>
+</section><section id="différentes-cibles" class="slide level2">
+<h1>Différentes cibles</h1>
+<ul>
+<li><p>Utilisateurs finaux intéressés par la donnée (analyse en particulier):</p>
+<ul>
+<li><p>professionnels &quot;utilisateurs&quot; (bureau d'études, sociétés de services, consultants,...)</p></li>
+<li><p>formateurs (écoles, universités ou sociétés privées axées formation)</p></li>
+<li><p>utilisateurs OpenStreetMap</p></li>
+</ul></li>
+<li><p>Développeur, intéressé par une première approche du géospatial</p></li>
+<li><p>Géomaticien, intéressé pour éviter le processus d'installation</p></li>
+<li><p>Administrateur système, intéressé par le déploiement</p></li>
+</ul>
+</section></section>
+<section><section id="des-solutions" class="titleslide slide level1"><h1>Des solutions <br/><br/><img width="450" src="images/icon_41982.png" /></h1></section><section id="deux-projets-principaux" class="slide level2">
+<h1>Deux projets principaux</h1>
+<ul>
+<li><p>L'OSGEO4W</p></li>
+<li><p>L'OSGeo Live</p></li>
+</ul>
+</section></section>
+<section><section id="losgeo4w" class="titleslide slide level1"><h1>L'OSGEO4W ?</h1></section><section id="les-logiciels-principaux-supportés" class="slide level2">
+<h1>Les logiciels principaux supportés</h1>
+<ul>
+<li>Apache</li>
+<li>MapServer</li>
+<li>TinyOWS</li>
+<li>QGIS</li>
+<li>Grass</li>
+<li>OTB</li>
+<li>OSSIM</li>
+<li>GDAL (avec extensions)</li>
+<li>Udig</li>
+<li>Python (avec extensions)</li>
+<li>SQLite</li>
+<li>Spatialite</li>
+<li>Proj</li>
+<li>Geos</li>
+<li>...</li>
+</ul>
+<aside class="notes">
+Applicatifs accessibles depuis le menu ou via la ligne de commande, en définissant des variables d'environnement
+</aside>
+</section><section id="pour-les-pressés" class="slide level2">
+<h1>Pour les pressés</h1>
+<h3 id="installation-express-desktop-et-web">Installation Express (Desktop et Web)</h3>
+<figure>
+<img src="images/osgeo4w_express_desktop.png" />
+</figure>
+<aside class="notes">
+Vous cochez le logiciel que vous voulez et vous faites &quot;Suivant-Suivant&quot;.
+</aside>
+</section><section id="pour-les-autres" class="slide level2">
+<h1>Pour les autres</h1>
+<h3 id="installation-avancée">Installation avancée</h3>
+<figure>
+<img src="images/osgeo4w_advanced.png" />
+</figure>
+<aside class="notes">
+Vous gérez chaque paquet, les versions des logiciels installés Multi-versions Mode offline
+</aside>
+</section><section id="forces" class="slide level2">
+<h1>Forces</h1>
+<ul>
+<li><p>Facile à installer pour les débutants</p></li>
+<li><p>Installation automatisée en ligne de commande</p></li>
+<li><p>Multi-versions des logiciels</p></li>
+<li><p>Pas de séparation entre système d'exploitation, logiciel et fichiers</p></li>
+</ul>
+</section><section id="faiblesses" class="slide level2">
+<h1>Faiblesses</h1>
+<ul>
+<li><p>Installateur pas universellement adopté au sein de l'OSGeo</p></li>
+<li><p>Report d'une partie de la communauté sur l'OSGeo Live</p></li>
+<li><p>Support 64 bits des paquets limités</p></li>
+</ul>
+</section></section>
+<section><section id="quest-ce-que-losgeolive" class="titleslide slide level1"><h1>Qu'est ce que l'OSGeoLive?</h1></section><section id="losgeolive" class="slide level2">
+<h1>L'OSGeoLive</h1>
+<p><a class="image" target="_blank"> <img width="600" align="right"  src="images/osgeolive_menu.png"> </a></p>
+<ul>
+<li>Plus de 50 applications Open Source Géospatiales</li>
+<li>Jeux de données exemple</li>
+<li>Vue d'ensemble et guide d'initiation cohérents</li>
+<li>Traductions</li>
+</ul>
+<aside class="notes">
+<p>Un DVD, une clé USB bootable ou une image disque virtuelle indépendante basée sur Xubuntu, qui vous permet d’essayer une large variété de logiciels opensource géospatiaux</p>
+<p>Jeux de données exemple à disposition avec documentation pour expliquer les web services OGC</p>
+Le DVD est idéal pour les manipulations lors de conférences, pour l'utilisation lors de workshops et pour essayer un grand nombre de logiciels.
+</aside>
+</section><section id="dvd-usb-machine-virtuelle" class="slide level2">
+<h1>DVD / USB / Machine virtuelle</h1>
+<p><img width="600" src="images/virtual_machine_usb.png" /></p>
+</section><section id="critères-de-qualité" class="slide level2">
+<h1>Critères de qualité</h1>
+<ul>
+<li><p>Logiciel établi, stable et fonctionnant</p></li>
+<li><p>Communauté active</p></li>
+</ul>
+<p><img width="600" src="images/metrics.png" /></p>
+</section><section id="organisation-de-la-production-et-du-marketing-du-projet" class="slide level2">
+<h1>Organisation de la production et du marketing du projet</h1>
+<p><img width="600" src="images/pipeline.png" /></p>
+</section><section id="nouveautés-en-7.9" class="slide level2">
+<h1>Nouveautés en 7.9?</h1>
+<p>Mise à jour:</p>
+<ul>
+<li>QGIS, postgis</li>
+<li>cartaro, eoxserver, geonode, geoserver, gvsig, leaflet, mapnik, mapserver, ncwms, osm, otb, pgrouting, pycsw, R, rasdaman, saga, spatialite, zoo-project, zygrib</li>
+</ul>
+<figure>
+<img src="images/qgis.png" />
+</figure>
+</section></section>
+<section><section id="lécosystème" class="titleslide slide level1"><h1>L'écosystème</h1></section><section id="open-source-geospatial-foundation-osgeo" class="slide level2">
+<h1>Open Source Geospatial Foundation (OSGeo)</h1>
+<p>Depuis 2006 et depuis 2008 pour la représentation fr, une ombrelle non lucrative:</p>
+<ul>
+<li>les logiciels Géospatiaux libres et Open Source</li>
+<li>l'éducation</li>
+<li>l'Open Data</li>
+</ul>
+<p><img  src="images/OSGeo_compass_with_text_square.png" alt="OSGeo" target="http://osgeo.org" /> <img  src="images/osgeo-green.png" alt="OSGeo" target="http://osgeo.asso.fr" /> <img class="image" valign="top"  src="images/gnu.png" width="300" alt="GNU" /></p>
+<aside class="notes">
+<p>OSGeo-Live derives its name from the Open Source GeoSpatial Foundation, or OSGeo for short.</p>
+The OSGeo Foundation was set up in 2006 as a non-profit umbrella organisation to support development and promotion of quality GeoSpatial Open Source Software and Open Data.
+</aside>
+</section><section id="ogc-standards" class="slide level2">
+<h1>OGC Standards</h1>
+<ul>
+<li>Interopérabilité</li>
+<li>Futur guidé par des expérimentations</li>
+<li>Retour sur investissement</li>
+</ul>
+<p><img width="600"  src="images/ogc.png"></p>
+<aside class="notes">
+<p>Open Source applications have a reputation for excellent standards compliance. Notably, the OGC uses Open Source projects when defining reference implementations for standards.</p>
+<p>OSGeo-Live includes overviews of some of the key OGC standards in simple language so they can be understood by people without a technical background.</p>
+Building Spatial Data Infrastructures using standards, facilitates interoperability between proprietary and open source applications. It facilitates sharing data between agencies. It reduces long term costs associated with data maintenance, and it reduces long term project risk by avoiding dependence upon proprietary formats or products, thus avoiding vendor lock-in.
+</aside>
+</section></section>
+<section><section id="sig-bureautiques" class="titleslide slide level1"><h1>SIG bureautiques</h1></section><section id="voir-analyser-et-éditer-sur-un-poste-bureautique" class="slide level2">
+<h1>Voir, analyser et éditer sur un poste bureautique</h1>
+<small>
+<table>
+    <tr>
+       <td>
+QGIS<br/><img  src="images/logo-QGIS.png"/>
+</td>
+       <td>
+GRASS GIS<br/><img  src="images/logo-GRASS.png"/>
+</td>
+       <td>
+gvSIG<br/><img  src="images/logo-gvSIG.png"/>
+</td>
+       <td>
+uDig<br/><img  src="images/logo-uDig.png"/>
+</td>
+    </tr>
+    <tr>
+       <td>
+Kosmo<br/><img  src="images/logo-Kosmo.png"/>
+</td>
+       <td>
+OpenJUMP<br/><img  src="images/logo-openjump.png"/>
+</td>
+       <td>
+SAGA<br/><img  src="images/logo-saga.png"/>
+</td>
+    </tr>
+</table>
+<p></small></p>
+</section></section>
+<section><section id="sig-côté-navigateur-web" class="titleslide slide level1"><h1>SIG côté navigateur web</h1></section><section id="visualisation-édition-et-analyse-dans-le-navigateur" class="slide level2">
+<h1>Visualisation, édition et analyse dans le navigateur</h1>
+<small>
+<table>
+    <tr>
+       <td>
+OpenLayers<br/><img  src="images/logo-OpenLayers.png"/>
+</td>
+       <td>
+Leaflet<br/><img  src="images/logo-leaflet.png"/>
+</td>
+       <td>
+Geomajas<br/><img  src="images/logo-geomajas2.png"/>
+</td>
+       <td>
+Mapbender<br/><img  src="images/logo-Mapbender3.png"/>
+</td>
+    </tr>
+    <tr>
+       <td>
+MapFish<br/><img  src="images/logo-mapfish.png"/>
+</td>
+       <td>
+GeoMOOSE<br/><img  src="images/logo-geomoose.png"/>
+</td>
+       <td>
+Cartaro<br/><img  src="images/logo-cartaro.png"/>
+</td>
+       <td>
+GeoNode<br/><img  src="images/logo-geonode.jpg"/>
+</td>
+    </tr>
+ </table>
+</small>
+<aside class="notes">
+We will now look at browser-based clients. Browser clients are regularly used to publish maps, and increasingly being used to deliver a wide range of tools and functions previously only available in desktop applications.
+</aside>
+</section></section>
+<section><section id="services-web" class="titleslide slide level1"><h1>Services Web</h1></section><section id="publication-de-données-spatiales-sur-internet" class="slide level2">
+<h1>Publication de données spatiales sur Internet</h1>
+<small>
+<table>
+    <tr>
+       <td>
+GeoServer<br/><img  src="images/logo-GeoServer.png"/>
+</td>
+       <td>
+MapServer<br/><img  src="images/logo-MapServer.png"/>
+</td>
+       <td>
+deegree<br/><img  src="images/logo-deegree.png"/>
+</td>
+       <td>
+ncWMS<br/><img  src="images/logo-ncWMS.png"/>
+</td>
+    </tr>
+    <tr>
+       <td>
+EOxServer<br/><img  src="images/logo-eoxserver-3.png"/>
+</td>
+       <td>
+GeoNetwork<br/><img  src="images/logo-GeoNetwork.png"/>
+</td>
+       <td>
+pycsw<br/><img  src="images/logo-pycsw.png"/>
+</td>
+       <td>
+MapProxy<br/><img  src="images/logo-mapproxy.png"/>
+</td>
+    </tr>
+    <tr>
+       <td>
+QGIS Server<br/><img  src="images/logo-qgis_mapserver.png"/>
+</td>
+       <td>
+52North WPS/SOS<br/><img  src="images/logo_52North.png"/>
+</td>
+       <td>
+TinyOWS<br/><img  src="images/logo-TinyOWS.png"/>
+</td>
+       <td>
+Zoo Project<br/><img  src="images/logo-ZOO-Project.png"/>
+</td>
+    </tr>
+ </table>
+</small>
+<aside class="notes">
+We'll now look at Web Services. Web Services are accessed via a URL, and return map data in various formats. Data is primarily accessed via OGC standards-based interfaces, including Web Map Services for images, Web Feature Services for vector data and Catalog Services for the Web for Metadata.
+</aside>
+</section></section>
+<section><section id="stockage-de-données" class="titleslide slide level1"><h1>Stockage de données</h1></section><section id="stockage-de-données-spatiales" class="slide level2">
+<h1>Stockage de données spatiales</h1>
+<small>
+<table>
+    <tr>
+       <td>
+PostGIS<br/><img  src="images/logo-PostGIS.png"/>
+</td>
+       <td>
+SpatialLite<br/><img  src="images/logo-spatialite.png"/>
+</td>
+    </tr>
+    <tr>
+       <td>
+rasdaman<br/><img  src="images/logo-rasdaman.png"/>
+</td>
+       <td>
+pgRouting<br/><img  src="images/logo-pgRouting.png"/>
+</td>
+    </tr>
+ </table>
+</small>
+<aside class="notes">
+At the bottom of the stack are the databases.
+</aside>
+</section></section>
+<section><section id="navigation-et-cartes" class="titleslide slide level1"><h1>Navigation et cartes</h1></section><section id="navigation-et-cartes-1" class="slide level2">
+<h1>Navigation et cartes</h1>
+<small>
+<table>
+    <tr>
+       <td>
+GpsDrive<br/><img  src="images/logo-gpsdrive.png"/>
+</td>
+       <td>
+Prune<br/><img  src="images/logo-prune.png"/>
+</td>
+       <td>
+Marble<br/><img  src="images/logo-marble.png"/>
+</td>
+    </tr>
+    <tr>
+       <td>
+OpenCPN<br/><img  src="images/logo-opencpn.png"/>
+</td>
+       <td>
+Open Street Map<br/><img  src="images/logo-osm.png"/>
+</td>
+       <td>
+Viking<br/><img  src="images/logo-viking.png"/>
+</td>
+    </tr>
+ </table>
+</small>
+<aside class="notes">
+The next category we will look at is Navigation and Maps.
+</aside>
+</section></section>
+<section><section id="outils-spatiaux" class="titleslide slide level1"><h1>Outils Spatiaux</h1></section><section id="outils-spécifiques-pour-lanalyse" class="slide level2">
+<h1>Outils spécifiques pour l'analyse</h1>
+<small>
+<table>
+    <tr>
+       <td>
+GeoKettle<br/><img  src="images/logo-geokettle.png"/>
+</td>
+       <td>
+GMT<br/><img  src="images/logo-GMT.png"/>
+</td>
+       <td>
+Mapnik<br/><img  src="images/logo-mapnik.png"/>
+</td>
+       <td>
+TileMill<br/><img  src="images/logo-tilemill.png"/>
+</td>
+    </tr>
+    <tr>
+       <td>
+Maptiler<br/><img  src="images/logo-maptiler.png"/>
+</td>
+       <td>
+OSSIM<br/><img  src="images/logo-ossim.png"/>
+</td>
+       <td>
+ORFEO Toollbox<br/><img  src="images/logo-otb.png"/>
+</td>
+       <td>
+R<br/><img  src="images/logo-R.jpg"/>
+</td>
+    </tr>
+ </table>
+</small>
+<aside class="notes">
+The next category we have grouped together are Spatial Tools.
+</aside>
+</section></section>
+<section><section id="sig-spécifiques-à-un-domaine" class="titleslide slide level1"><h1>SIG spécifiques à un domaine</h1></section><section id="applications-ciblant-un-domaine-spécifique" class="slide level2">
+<h1>Applications ciblant un domaine spécifique</h1>
+<small>
+<table>
+    <tr>
+       <td>
+Sahana<br/><img  src="images/logo-sahana-eden.png"/>
+</td>
+       <td>
+Ushahidi<br/><img  src="images/logo-ushahidi.png"/>
+</td>
+       <td>
+osgEarth<br/><img  src="images/logo-osgearth.png"/>
+</td>
+    </tr>
+    <tr>
+       <td>
+MB-System<br/><img  src="images/logo-mb-system.png"/>
+</td>
+       <td>
+zyGrib<br/><img  src="images/logo-zygrib.png"/>
+</td>
+    </tr>
+ </table>
+</small>
+<aside class="notes">
+In this section, we have grouped applications targeted at a specific domain.
+</aside>
+</section></section>
+<section><section id="données" class="titleslide slide level1"><h1>Données</h1></section><section id="jeux-de-données-géospatiaux" class="slide level2">
+<h1>Jeux de données géospatiaux</h1>
+<small>
+<table>
+    <tr>
+       <td>
+Natural Earth<br/><img  src="images/logo-naturalearth.png"/>
+</td>
+       <td>
+Open Street Map<br/><img  src="images/logo-osm.png"/>
+</td>
+    </tr>
+    <tr>
+       <td>
+North Carolina<br/><img  width="300" src="images/north_carolina_dataset_nviz.jpg"/>
+</td>
+       <td>
+netCDF<br/><img  width="300" src="images/netcdf_annual_avg_max_temp.png"/>
+</td>
+    </tr>
+ </table>
+</small>
+<aside class="notes">
+Of course, all these free tools become much more useful with access to free mapping data.
+</aside>
+</section></section>
+<section><section id="bibliothèques-géospatiales" class="titleslide slide level1"><h1>Bibliothèques géospatiales</h1></section><section id="bibliothèques-géospatiales-1" class="slide level2">
+<h1>Bibliothèques géospatiales</h1>
+<small>
+<table>
+    <tr>
+       <td>
+GDAL/OGR<br/><img  src="images/logo-GDAL.png"/>
+</td>
+       <td>
+JTS<br/><img  src="images/jts_project.png"/>
+</td>
+       <td>
+GeoTools<br/><img  src="images/logo-GeoTools.png"/>
+</td>
+       <td>
+GEOS<br/><img  src="images/logo-GEOS.png"/>
+</td>
+    </tr>
+    <tr>
+       <td>
+MetaCRS Proj4<br/><img  src="images/logo-metacrs.png"/>
+</td>
+       <td>
+libLAS<br/><img  src="images/logo-libLAS.png"/>
+</td>
+       <td>
+Iris<br/><img  src="images/logo-iris.png"/>
+</td>
+    </tr>
+ </table>
+</small>
+<aside class="notes">
+We will now look at key libraries which have shown a level of quality by going through the OSGeo Incubation process.
+</aside>
+</section></section>
+<section><section id="autres-applications" class="titleslide slide level1"><h1>Autres applications</h1></section><section id="installateurs-seulement" class="slide level2">
+<h1>Installateurs seulement</h1>
+<small>
+<table>
+    <tr>
+       <td>
+MapWindow<br/><img  src="images/logo-MapWindow.png"/>
+</td>
+       <td>
+MapGuide Open Source<br/><img  src="images/logo-MapGuideOS.png"/>
+</td>
+    </tr>
+ </table>
+</small>
+<aside class="notes">
+Les applications qui ont des installateurs mais ne sont pas directement exécutables depuis l'OSGeoLive.
+</aside>
+</section></section>
+<section><section id="osgeo-live-le-récapitulatif" class="titleslide slide level1"><h1>OSGeo Live, le récapitulatif</h1></section><section id="forces-1" class="slide level2">
+<h1>Forces</h1>
+<ul>
+<li><p>Le tout en un</p></li>
+<li><p>Le multi-support</p></li>
+<li><p>La facilité d'usages</p></li>
+</ul>
+</section><section id="faiblesses-1" class="slide level2">
+<h1>Faiblesses</h1>
+<ul>
+<li><p>Utilisation mémoire</p></li>
+<li><p>Taille du fichier de base lors du téléchargement</p></li>
+<li><p>Déploiement 32 bits donc utilisable pour l'apprentissage, pas sur un serveur de production</p></li>
+</ul>
+</section></section>
+<section><section id="des-solutions-mais-quels-choix-pour-qui" class="titleslide slide level1"><h1>Des solutions mais quels choix, pour qui?</h1></section><section id="utilisateurs-finaux-pour-lanalyse-dont-géomaticiens" class="slide level2">
+<h1>Utilisateurs finaux pour l'analyse (dont géomaticiens)</h1>
+<p>Pour une utilisation bureautique classique:</p>
+<ul>
+<li>OSGEO4W</li>
+</ul>
+<p>Pour une utilisation bureautique spécifique avec de nombreuses briques:</p>
+<ul>
+<li>OSGeo Live</li>
+</ul>
+<p>Pour une utilisation web</p>
+<ul>
+<li>OSGeo Live</li>
+</ul>
+</section><section id="développeurs" class="slide level2">
+<h1>Développeurs</h1>
+<ul>
+<li>OSGeo Live</li>
+</ul>
+</section><section id="géomaticiens-allant-vers-le-développement" class="slide level2">
+<h1>Géomaticiens allant vers le développement</h1>
+<ul>
+<li><p>Commencer avec l'OSGEO4W pour se familiariser avec l'usage bureautique</p></li>
+<li><p>Passer à l'OSGeo Live pour se familiariser avec Linux (Xubuntu)</p></li>
+<li><p>Utiliser les briques installées en particulier pour le webmapping</p></li>
+<li><p>Monter en compétences sur l'installation Linux des différentes briques</p></li>
+</ul>
+</section><section id="administrateurs-système" class="slide level2">
+<h1>Administrateurs système</h1>
+<ul>
+<li><p>Réutilisation des <a href="https://svn.osgeo.org/osgeo/livedvd/">sources SVN</a>, en particulier pour le déploiement</p></li>
+<li><p>Réutilisation des paquets de la distribution</p></li>
+</ul>
+</section></section>
+<section><section id="pour-aller-plus-loin" class="titleslide slide level1"><h1>Pour aller plus loin</h1></section><section id="les-sites" class="slide level2">
+<h1>Les sites</h1>
+<p><strong>OSGEO4W</strong></p>
+<p><a href="http://trac.osgeo.org/osgeo4w/wiki/OSGeo4W_fr">Site officiel</a></p>
+<p><strong>OSGeo-Live</strong></p>
+<p><a href="http://live.osgeo.org/fr/">Site officiel</a></p>
+<p><a href="http://wiki.osgeo.org/wiki/Live_GIS_Disc">Wiki</a></p>
+</section><section id="des-solutions-dinstallation-alternatives-plus-génériques" class="slide level2">
+<h1>Des solutions d'installation alternatives plus génériques</h1>
+<h3 id="sous-linux">Sous Linux:</h3>
+<ul>
+<li><p><a href="https://www.docker.io">Docker</a></p>
+<p>Permet de faire fonctionner ses applications dans des &quot;conteneurs&quot;</p></li>
+</ul>
+<h3 id="sous-windows">Sous Windows:</h3>
+<ul>
+<li><p><a href="https://chocolatey.org">Chocolatey</a></p>
+<p>Un installateur Windows en ligne de commande, alternative à Cygwin</p></li>
+</ul>
+<h3 id="sous-différents-os">Sous différents OS:</h3>
+<ul>
+<li><a href="http://www.vagrantup.com">Vagrant</a>, <a href="http://docs.fabfile.org">Fabric</a> et autres outils de déploiement &quot;tendance DevOPS&quot;</li>
+</ul>
+<aside class="notes">
+Docker: comme une machine virtuelle en simplifié mais on n'a pas d'OS installé directement. On peut faire tourner un MapServer dedans par exemple dont la version est différente de celui sur l'OS
+</aside>
+</section></section>
+<section><section id="crédits" class="titleslide slide level1"><h1>Crédits</h1></section><section id="contributeurs-et-traducteurs" class="slide level2">
+<h1>Contributeurs et traducteurs</h1>
+<small><small>
+<table>
+<tr>
+<td>
+Activity Workshop
+</td>
+<td>
+Agustín Dí­ez
+</td>
+<td>
+Aikaterini Kapsampeli
+</td>
+<td>
+Alan Beccati
+</td>
+<td>
+Alan Boudreault
+</td>
+<td>
+Alessandro Furieri
+</td>
+<td>
+Alex Mandel
+</td>
+<td>
+Alexander Bruy
+</td>
+</tr>
+<tr>
+<td>
+Alexander Kleshnin
+</td>
+<td>
+Alexander Muriy
+</td>
+<td>
+Alexandre Dube
+</td>
+<td>
+Alexey Ardyakov
+</td>
+<td>
+Amy Gao
+</td>
+<td>
+Andrea Antonello
+</td>
+<td>
+Andrea Yanza
+</td>
+<td>
+Andrey Syrokomskiy
+</td>
+</tr>
+<tr>
+<td>
+Andry Rustanto
+</td>
+<td>
+Angelos Tzotsos
+</td>
+<td>
+Anna Muñoz
+</td>
+<td>
+Anton Novichikhin
+</td>
+<td>
+Anton Patrushev
+</td>
+<td>
+Antonio Falciano
+</td>
+<td>
+Argyros Argyridis
+</td>
+<td>
+Ariel Núñez
+</td>
+</tr>
+<tr>
+<td>
+Assumpció Termens
+</td>
+<td>
+Astrid Emde
+</td>
+<td>
+Barry Rowlingson
+</td>
+<td>
+Benjamin Pross
+</td>
+<td>
+Brian Hamlin
+</td>
+<td>
+Bruno Binet
+</td>
+<td>
+Bu Kun
+</td>
+<td>
+Cameron Shorter
+</td>
+</tr>
+<tr>
+<td>
+Christophe Tufféry
+</td>
+<td>
+Christos Iossifidis
+</td>
+<td>
+Cristhian Pin
+</td>
+<td>
+Damian Wojsław
+</td>
+<td>
+Dane Springmeyer
+</td>
+<td>
+Daniel Kastl
+</td>
+<td>
+Daria Svidzinska
+</td>
+<td>
+David Mateos
+</td>
+</tr>
+<tr>
+<td>
+Denis Rykov
+</td>
+<td>
+Diego González
+</td>
+<td>
+Diego Migliavacca
+</td>
+<td>
+Dimitar Misev
+</td>
+<td>
+Dmitry Baryshnikov
+</td>
+<td>
+Dominik Helle
+</td>
+<td>
+Edgar Soldin
+</td>
+<td>
+Eike Hinderk Jürrens
+</td>
+</tr>
+<tr>
+<td>
+Elena Mezzini
+</td>
+<td>
+Eric Lemoine
+</td>
+<td>
+Erika Pillu
+</td>
+<td>
+Estela Llorente
+</td>
+<td>
+Etienne Delay
+</td>
+<td>
+Etienne Dube
+</td>
+<td>
+Evgeny Nikulin
+</td>
+<td>
+Fran Boon
+</td>
+</tr>
+<tr>
+<td>
+Frank Gasdorf
+</td>
+<td>
+Frank Warmerdam
+</td>
+<td>
+François Prunayre
+</td>
+<td>
+Friedjoff Trautwein
+</td>
+<td>
+Gavin Treadgold
+</td>
+<td>
+Giuseppe Calamita
+</td>
+<td>
+Grald Fenoy
+</td>
+<td>
+Grigory Rozhentsov
+</td>
+</tr>
+<tr>
+<td>
+Guy Griffiths
+</td>
+<td>
+Hamish Bowman
+</td>
+<td>
+Haruyuki Seki
+</td>
+<td>
+Henry Addo
+</td>
+<td>
+Hernan Olivera
+</td>
+<td>
+Howard Butler
+</td>
+<td>
+Hyeyeong Choe
+</td>
+<td>
+Ian Edwards
+</td>
+</tr>
+<tr>
+<td>
+Ian Turton
+</td>
+<td>
+Ilya Filippov
+</td>
+<td>
+Jackie Ng
+</td>
+<td>
+Jan Drewnak
+</td>
+<td>
+Jane Lewis
+</td>
+<td>
+Javier Rodrigo
+</td>
+<td>
+Javier Sánchez
+</td>
+<td>
+Jesús Gómez
+</td>
+</tr>
+<tr>
+<td>
+Jim Klassen
+</td>
+<td>
+Jing Wang
+</td>
+<td>
+Jinsongdi Yu
+</td>
+<td>
+Jody Garnett
+</td>
+<td>
+Johan Van de Wauw
+</td>
+<td>
+John Bryant
+</td>
+<td>
+Jorge Arévalo
+</td>
+<td>
+Jorge Sanz
+</td>
+</tr>
+<tr>
+<td>
+José Antonio Canalejo
+</td>
+<td>
+José Vicente Higón
+</td>
+<td>
+Judit Mays
+</td>
+<td>
+Klokan Petr Pridal
+</td>
+<td>
+Kristof Lange
+</td>
+<td>
+Lance McKee
+</td>
+<td>
+Lars Lingner
+</td>
+<td>
+Luca Delucchi
+</td>
+</tr>
+<tr>
+<td>
+Lucía Sanjaime
+</td>
+<td>
+M Iqnaul Haq Siregar
+</td>
+<td>
+Mage Whopper
+</td>
+<td>
+Manuel Grizonnet
+</td>
+<td>
+Marc-André Barbeau
+</td>
+<td>
+Marc Torres
+</td>
+<td>
+Marco Curreli
+</td>
+<td>
+Marco Puppin
+</td>
+</tr>
+<tr>
+<td>
+Margherita Di Leo
+</td>
+<td>
+Maria Vakalopoulou
+</td>
+<td>
+Mario Andino
+</td>
+<td>
+Mark Leslie
+</td>
+<td>
+Massimo Di Stefano
+</td>
+<td>
+Matthias Streulens
+</td>
+<td>
+Mauricio Miranda
+</td>
+<td>
+Mauricio Pazos
+</td>
+</tr>
+<tr>
+<td>
+Maxim Dubinin
+</td>
+<td>
+Micha Silver
+</td>
+<td>
+Michael Owonibi
+</td>
+<td>
+Michaël Michaud
+</td>
+<td>
+Mike Adair
+</td>
+<td>
+Milena Nowotarska
+</td>
+<td>
+Nacho Varela
+</td>
+<td>
+Nadiia Gorash
+</td>
+</tr>
+<tr>
+<td>
+Nathaniel V. Kelso
+</td>
+<td>
+Ned Horning
+</td>
+<td>
+Nobusuke Iwasaki
+</td>
+<td>
+Oliver Tonnhofer
+</td>
+<td>
+Otto Dassau
+</td>
+<td>
+Pasquale Di Donato
+</td>
+<td>
+Patric Hafner
+</td>
+<td>
+Paul Meems
+</td>
+</tr>
+<tr>
+<td>
+Pavel
+</td>
+<td>
+Pedro-Juan Ferrer
+</td>
+<td>
+Pirmin Kalberer
+</td>
+<td>
+Raf Roset
+</td>
+<td>
+Regina Obe
+</td>
+<td>
+Ricardo Pinho
+</td>
+<td>
+Roald de Wit
+</td>
+<td>
+Roberta Fagandini
+</td>
+</tr>
+<tr>
+<td>
+Roberto Antolin
+</td>
+<td>
+Roberto Antolí­n
+</td>
+<td>
+Roger Veciana
+</td>
+<td>
+Ruth Schoenbuchner
+</td>
+<td>
+Samuel Mesa
+</td>
+<td>
+Scott Penrose
+</td>
+<td>
+Sergey Grachev
+</td>
+<td>
+Sergio Baños
+</td>
+</tr>
+<tr>
+<td>
+Simon Cropper
+</td>
+<td>
+Simon Pigot
+</td>
+<td>
+Stefan A. Tzeggai
+</td>
+<td>
+Stefan Hansen
+</td>
+<td>
+Stefan Steiniger
+</td>
+<td>
+Stephan Meissl
+</td>
+<td>
+Steve Lime
+</td>
+<td>
+Takayuki Nuimura
+</td>
+</tr>
+<tr>
+<td>
+Thierry Badard
+</td>
+<td>
+Thomas Baschetti
+</td>
+<td>
+Thomas Gratier
+</td>
+<td>
+Tom Kralidis
+</td>
+<td>
+Toshikazu Seto
+</td>
+<td>
+Trevor Wekel
+</td>
+<td>
+Valenty González
+</td>
+<td>
+Vera
+</td>
+</tr>
+<tr>
+<td>
+Xianfeng Song
+</td>
+<td>
+Yoichi Kayama
+</td>
+<td>
+Zhengfan Lin
+</td>
+<td>
+kuzkok
+</td>
+<td>
+Òscar Fonts
+</td>
+</table>
+<p></small></small> <br/><br/></p>
+<p><small><b>Contributeurs principaux:</b> Angelos Tzotsos, Cameron Shorter, Hamish Bowman, Alex Mandel and Brian Hamlin.</small></p>
+<aside class="notes">
+<p>
+As you can see listed here, many people have been involved in packaging the Open Source Software for OSGeo-Live, and literally thousands of developers have helped build the software we package. Thank you. I'd like to especially mention Angelos Tzotsos, Cameron Shorter, Hamish Bowman, Alex Mandel and Brian Hamlin who have led the coordination and core packaging of the OSGeo-Live project, and LISAsoft, the Information Center for the Environment at the University of California, for providing resources and sponsorship.
+</p>
+</aside>
+</section><section id="crédits-images" class="slide level2">
+<h1>Crédits images</h1>
+<p><small>Binoculars designed by Luis Prado from the Noun Project Creative Commons – Attribution (CC BY 3.0) http://thenounproject.com/term/binoculars/22637/ </small></p>
+<p><small>Signpost designed by hunotika from the Noun Project Creative Commons – Attribution (CC BY 3.0) http://thenounproject.com/term/signpost/41982/ </small></p>
+</section></section>
+    </div>
+  </div>
+
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+//          { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+    </body>
+</html>
