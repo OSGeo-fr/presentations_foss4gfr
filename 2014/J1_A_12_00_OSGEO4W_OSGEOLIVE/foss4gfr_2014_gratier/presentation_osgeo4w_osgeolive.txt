@@ -1,0 +1,776 @@
+# OSGeo4W et OSGeo-Live: bien aborder l'écosystème Géospatial Open Source <br/><small style="color:#1166AD;">Thomas Gratier</small>
+
+# Le constat <br/><br/><img width="450" src="images/icon_22637.png" />
+
+## Une petite histoire
+
+A l'époque des débuts de PostGIS, il n'existait pas d'installateur pour pouvoir le déployer sous Windows.
+Le seul moyen c'était de compiler avec MinGW.
+
+**Un utilisateur final non-technique n'a pas toujours le ticket d'entrée pour démarrer.**
+
+## De nos jours
+
+### Le positif
+
+Amélioration car il existe presque toujours un installateur Windows
+
+### Le négatif
+
+Un écosystème côté logiciels SIG toujours fragmenté sous [Windows](http://live.osgeo.org/fr/win_installers.html)
+
+Une cible Windows mouvante: version de C++, architecture 32/64 bits, système d'exploitation
+
+## Exemples (en C en particulier):
+
+-   GDAL
+
+    -  [FWTools](http://fwtools.maptools.org)
+
+    -  [Gis Internals](http://gisinternals.com/sdk/)
+
+-   MapServer
+
+    -  [MS4W](http://www.maptools.org/ms4w/)
+
+    -  [Gis Internals](http://gisinternals.com/sdk/)
+
+## Différentes cibles
+
+-   Utilisateurs finaux intéressés par la donnée (analyse en particulier):
+
+    -   professionnels "utilisateurs" (bureau d'études, sociétés de services, consultants,...)
+
+    -   formateurs (écoles, universités ou sociétés privées axées formation)
+
+    -   utilisateurs OpenStreetMap
+
+-   Développeur, intéressé par une première approche du géospatial
+
+-   Géomaticien, intéressé pour éviter le processus d'installation
+
+-   Administrateur système, intéressé par le déploiement
+
+
+# Des solutions <br/><br/><img width="450" src="images/icon_41982.png" />
+
+## Deux projets principaux
+
+-   L'OSGEO4W
+
+-   L'OSGeo Live
+
+
+# L'OSGEO4W ?
+
+Un installateur simple pour Windows pour les logiciels SIG libres /Open Source basé sur CygWin.
+
+Il embarque tous les utilitaires classiques de Linux
+
+Il gère les dépendances
+
+## Les logiciels principaux supportés
+
+-  Apache
+-  MapServer
+-  TinyOWS
+-  QGIS
+-  Grass
+-  OTB
+-  OSSIM
+-  GDAL (avec extensions)
+-  Udig
+-  Python (avec extensions)
+-  SQLite
+-  Spatialite
+-  Proj
+-  Geos
+-  ...
+
+<div class="notes">
+Applicatifs accessibles depuis le menu ou via la ligne de commande, en définissant des variables d'environnement
+</div>
+
+## Pour les pressés
+
+### Installation Express (Desktop et Web)
+
+![](images/osgeo4w_express_desktop.png)
+
+<div class="notes">
+Vous cochez le logiciel que vous voulez et vous faites "Suivant-Suivant".
+</div>
+
+## Pour les autres
+
+### Installation avancée
+
+![](images/osgeo4w_advanced.png)
+
+<div class="notes">
+Vous gérez chaque paquet, les versions des logiciels installés
+Multi-versions
+Mode offline
+</div>
+
+## Forces
+
+- Facile à installer pour les débutants
+
+- Installation automatisée en ligne de commande
+
+- Multi-versions des logiciels
+
+- Pas de séparation entre système d'exploitation, logiciel et fichiers
+
+## Faiblesses
+
+- Installateur pas universellement adopté au sein de l'OSGeo
+
+- Report d'une partie de la communauté sur l'OSGeo Live
+
+- Support 64 bits des paquets limités
+
+# Qu'est ce que l'OSGeoLive?
+
+## L'OSGeoLive
+
+<a class="image" target="_blank">
+    <img width="600" align="right"  src="images/osgeolive_menu.png">
+</a>
+
+-   Plus de 50 applications Open Source Géospatiales
+-   Jeux de données exemple
+-   Vue d'ensemble et guide d'initiation cohérents
+-   Traductions
+
+<div class="notes">
+Un DVD, une clé USB bootable ou une image disque virtuelle indépendante basée sur Xubuntu, qui vous permet d’essayer une large variété de logiciels opensource géospatiaux
+
+Jeux de données exemple à disposition avec documentation pour expliquer les web services OGC
+
+Le DVD est idéal pour les manipulations lors de conférences, pour l'utilisation lors de workshops et pour essayer un grand nombre de logiciels.
+</div>
+
+## DVD / USB / Machine virtuelle
+
+<img width="600" src="images/virtual_machine_usb.png" />
+
+## Critères de qualité
+
+-   Logiciel établi, stable et fonctionnant
+
+-   Communauté active
+
+<img width="600" src="images/metrics.png" />
+
+## Organisation de la production et du marketing du projet
+
+<img width="600" src="images/pipeline.png" />
+
+Nouveautés en 7.9?
+------------------
+
+Mise à jour:
+
+-   QGIS, postgis
+-   cartaro, eoxserver, geonode, geoserver, gvsig, leaflet, mapnik,
+    mapserver, ncwms, osm, otb, pgrouting, pycsw, R, rasdaman, saga,
+    spatialite, zoo-project, zygrib
+
+![](images/qgis.png)
+
+# L'écosystème
+
+## Open Source Geospatial Foundation (OSGeo)
+
+Depuis 2006 et depuis 2008 pour la représentation fr, une ombrelle non lucrative:
+
+-   les logiciels Géospatiaux libres et Open Source
+-   l'éducation
+-   l'Open Data
+
+<img  src="images/OSGeo_compass_with_text_square.png" alt="OSGeo" target="http://osgeo.org" />
+<img  src="images/osgeo-green.png" alt="OSGeo" target="http://osgeo.asso.fr" />
+<img class="image" valign="top"  src="images/gnu.png" width="300" alt="GNU" />
+
+
+<div class="notes">
+OSGeo-Live derives its name from the Open Source GeoSpatial Foundation,
+or OSGeo for short.
+
+The OSGeo Foundation was set up in 2006 as a non-profit umbrella
+organisation to support development and promotion of quality GeoSpatial
+Open Source Software and Open Data.
+</div>
+
+## OGC Standards
+
+-   Interopérabilité
+-   Futur guidé par des expérimentations
+-   Retour sur investissement
+
+<img width="600"  src="images/ogc.png">
+
+<div class="notes">
+Open Source applications have a reputation for excellent standards
+compliance. Notably, the OGC uses Open Source projects when defining
+reference implementations for standards.
+
+OSGeo-Live includes overviews of some of the key OGC standards in simple
+language so they can be understood by people without a technical
+background.
+
+Building Spatial Data Infrastructures using standards, facilitates
+interoperability between proprietary and open source applications. It
+facilitates sharing data between agencies. It reduces long term costs
+associated with data maintenance, and it reduces long term project risk
+by avoiding dependence upon proprietary formats or products, thus
+avoiding vendor lock-in.
+</div>
+
+# SIG bureautiques
+
+## Voir, analyser et éditer sur un poste bureautique
+
+<small>
+<table>
+    <tr>
+       <td>QGIS<br/><img  src="images/logo-QGIS.png"/></td>
+       <td>GRASS GIS<br/><img  src="images/logo-GRASS.png"/></td>
+       <td>gvSIG<br/><img  src="images/logo-gvSIG.png"/></td>
+       <td>uDig<br/><img  src="images/logo-uDig.png"/></td>
+    </tr>
+    <tr>
+       <td>Kosmo<br/><img  src="images/logo-Kosmo.png"/></td>
+       <td>OpenJUMP<br/><img  src="images/logo-openjump.png"/></td>
+       <td>SAGA<br/><img  src="images/logo-saga.png"/></td>
+    </tr>
+</table>
+</small>
+
+# SIG côté navigateur web
+
+## Visualisation, édition et analyse dans le navigateur
+
+<small>
+ <table>
+    <tr>
+       <td>OpenLayers<br/><img  src="images/logo-OpenLayers.png"/></td>
+       <td>Leaflet<br/><img  src="images/logo-leaflet.png"/></td>
+       <td>Geomajas<br/><img  src="images/logo-geomajas2.png"/></td>
+       <td>Mapbender<br/><img  src="images/logo-Mapbender3.png"/></td>
+    </tr>
+    <tr>
+       <td>MapFish<br/><img  src="images/logo-mapfish.png"/></td>
+       <td>GeoMOOSE<br/><img  src="images/logo-geomoose.png"/></td>
+       <td>Cartaro<br/><img  src="images/logo-cartaro.png"/></td>
+       <td>GeoNode<br/><img  src="images/logo-geonode.jpg"/></td>
+    </tr>
+ </table>
+</small>
+<div class="notes">
+ We will now look at browser-based clients. Browser clients are regularly used to publish maps, and increasingly being used to deliver a wide range of tools and functions previously only available in desktop applications.
+</div>
+
+# Services Web
+
+## Publication de données spatiales sur Internet
+
+<small>
+ <table>
+    <tr>
+       <td>GeoServer<br/><img  src="images/logo-GeoServer.png"/></td>
+       <td>MapServer<br/><img  src="images/logo-MapServer.png"/></td>
+       <td>deegree<br/><img  src="images/logo-deegree.png"/></td>
+       <td>ncWMS<br/><img  src="images/logo-ncWMS.png"/></td>
+    </tr>
+    <tr>
+       <td>EOxServer<br/><img  src="images/logo-eoxserver-3.png"/></td>
+       <td>GeoNetwork<br/><img  src="images/logo-GeoNetwork.png"/></td>
+       <td>pycsw<br/><img  src="images/logo-pycsw.png"/></td>
+       <td>MapProxy<br/><img  src="images/logo-mapproxy.png"/></td>
+    </tr>
+    <tr>
+       <td>QGIS Server<br/><img  src="images/logo-qgis_mapserver.png"/></td>
+       <td>52North WPS/SOS<br/><img  src="images/logo_52North.png"/></td>
+       <td>TinyOWS<br/><img  src="images/logo-TinyOWS.png"/></td>
+       <td>Zoo Project<br/><img  src="images/logo-ZOO-Project.png"/></td>
+    </tr>
+ </table>
+</small>
+<div class="notes">
+ We'll now look at Web Services. Web Services are accessed via a URL, and return map data in various formats. Data is primarily accessed via OGC standards-based interfaces, including Web Map Services for images, Web Feature Services for vector data and Catalog Services for the Web for Metadata.
+</div>
+
+# Stockage de données
+
+## Stockage de données spatiales
+
+<small>
+ <table>
+    <tr>
+       <td>PostGIS<br/><img  src="images/logo-PostGIS.png"/></td>
+       <td>SpatialLite<br/><img  src="images/logo-spatialite.png"/></td>
+    </tr>
+    <tr>
+       <td>rasdaman<br/><img  src="images/logo-rasdaman.png"/></td>
+       <td>pgRouting<br/><img  src="images/logo-pgRouting.png"/></td>
+    </tr>
+ </table>
+</small>
+<div class="notes">
+ At the bottom of the stack are the databases.
+</div>
+
+# Navigation et cartes
+
+## Navigation et cartes
+<small>
+ <table>
+    <tr>
+       <td>GpsDrive<br/><img  src="images/logo-gpsdrive.png"/></td>
+       <td>Prune<br/><img  src="images/logo-prune.png"/></td>
+       <td>Marble<br/><img  src="images/logo-marble.png"/></td>
+    </tr>
+    <tr>
+       <td>OpenCPN<br/><img  src="images/logo-opencpn.png"/></td>
+       <td>Open Street Map<br/><img  src="images/logo-osm.png"/></td>
+       <td>Viking<br/><img  src="images/logo-viking.png"/></td>
+    </tr>
+ </table>
+</small>
+<div class="notes">
+ The next category we will look at is Navigation and Maps.
+</div>
+
+# Outils Spatiaux
+
+## Outils spécifiques pour l'analyse
+
+<small>
+ <table>
+    <tr>
+       <td>GeoKettle<br/><img  src="images/logo-geokettle.png"/></td>
+       <td>GMT<br/><img  src="images/logo-GMT.png"/></td>
+       <td>Mapnik<br/><img  src="images/logo-mapnik.png"/></td>
+       <td>TileMill<br/><img  src="images/logo-tilemill.png"/></td>
+    </tr>
+    <tr>
+       <td>Maptiler<br/><img  src="images/logo-maptiler.png"/></td>
+       <td>OSSIM<br/><img  src="images/logo-ossim.png"/></td>
+       <td>ORFEO Toollbox<br/><img  src="images/logo-otb.png"/></td>
+       <td>R<br/><img  src="images/logo-R.jpg"/></td>
+    </tr>
+ </table>
+</small>
+<div class="notes">
+ The next category we have grouped together are Spatial Tools.
+</div>
+
+# SIG spécifiques à un domaine
+
+## Applications ciblant un domaine spécifique
+
+<small>
+ <table>
+    <tr>
+       <td>Sahana<br/><img  src="images/logo-sahana-eden.png"/></td>
+       <td>Ushahidi<br/><img  src="images/logo-ushahidi.png"/></td>
+       <td>osgEarth<br/><img  src="images/logo-osgearth.png"/></td>
+    </tr>
+    <tr>
+       <td>MB-System<br/><img  src="images/logo-mb-system.png"/></td>
+       <td>zyGrib<br/><img  src="images/logo-zygrib.png"/></td>
+    </tr>
+ </table>
+</small>
+<div class="notes">
+ In this section, we have grouped applications targeted at a specific domain.
+</div>
+
+# Données
+
+## Jeux de données géospatiaux
+<small>
+ <table>
+    <tr>
+       <td>Natural Earth<br/><img  src="images/logo-naturalearth.png"/></td>
+       <td>Open Street Map<br/><img  src="images/logo-osm.png"/></td>
+    </tr>
+    <tr>
+       <td>North Carolina<br/><img  width="300" src="images/north_carolina_dataset_nviz.jpg"/></td>
+       <td>netCDF<br/><img  width="300" src="images/netcdf_annual_avg_max_temp.png"/></td>
+    </tr>
+ </table>
+</small>
+<div class="notes">
+ Of course, all these free tools become much more useful with access to free mapping data.
+</div>
+
+# Bibliothèques géospatiales
+
+## Bibliothèques géospatiales
+
+<small>
+ <table>
+    <tr>
+       <td>GDAL/OGR<br/><img  src="images/logo-GDAL.png"/></td>
+       <td>JTS<br/><img  src="images/jts_project.png"/></td>
+       <td>GeoTools<br/><img  src="images/logo-GeoTools.png"/></td>
+       <td>GEOS<br/><img  src="images/logo-GEOS.png"/></td>
+    </tr>
+    <tr>
+       <td>MetaCRS Proj4<br/><img  src="images/logo-metacrs.png"/></td>
+       <td>libLAS<br/><img  src="images/logo-libLAS.png"/></td>
+       <td>Iris<br/><img  src="images/logo-iris.png"/></td>
+    </tr>
+ </table>
+</small>
+<div class="notes">
+ We will now look at key libraries which have shown a level of quality by going through the OSGeo Incubation process.
+</div>
+
+# Autres applications
+
+## Installateurs seulement
+
+<small>
+ <table>
+    <tr>
+       <td>MapWindow<br/><img  src="images/logo-MapWindow.png"/></td>
+       <td>MapGuide Open Source<br/><img  src="images/logo-MapGuideOS.png"/></td>
+    </tr>
+ </table>
+</small>
+<div class="notes">
+ Les applications qui ont des installateurs mais ne sont pas directement exécutables depuis l'OSGeoLive.
+</div>
+
+# OSGeo Live, le récapitulatif
+
+## Forces
+
+-   Le tout en un
+
+-   Le multi-support
+
+-   La facilité d'usages
+
+
+## Faiblesses
+
+-   Utilisation mémoire
+
+-   Taille du fichier de base lors du téléchargement
+
+-   Déploiement 32 bits donc utilisable pour l'apprentissage, pas sur un serveur de production
+
+# Des solutions mais quels choix, pour qui?
+
+## Utilisateurs finaux pour l'analyse (dont géomaticiens)
+
+Pour une utilisation bureautique classique:
+
+-   OSGEO4W
+
+Pour une utilisation bureautique spécifique avec de nombreuses briques:
+
+-   OSGeo Live
+
+Pour une utilisation web
+
+-   OSGeo Live
+
+## Développeurs
+
+-   OSGeo Live
+
+## Géomaticiens allant vers le développement
+
+-  Commencer avec l'OSGEO4W pour se familiariser avec l'usage bureautique
+
+-  Passer à l'OSGeo Live pour se familiariser avec Linux (Xubuntu)
+
+-  Utiliser les briques installées en particulier pour le webmapping
+
+-  Monter en compétences sur l'installation Linux des différentes briques
+
+## Administrateurs système
+
+-  Réutilisation des [sources SVN](https://svn.osgeo.org/osgeo/livedvd/), en particulier pour le déploiement
+
+-  Réutilisation des paquets de la distribution
+
+
+# Pour aller plus loin
+
+## Les sites
+
+**OSGEO4W**
+
+[Site officiel](http://trac.osgeo.org/osgeo4w/wiki/OSGeo4W_fr)
+
+**OSGeo-Live**
+
+[Site officiel](http://live.osgeo.org/fr/)
+
+[Wiki](http://wiki.osgeo.org/wiki/Live_GIS_Disc)
+
+## Des solutions d'installation alternatives plus génériques
+
+### Sous Linux:
+
+-   [Docker](https://www.docker.io)
+
+    Permet de faire fonctionner ses applications dans des "conteneurs"
+
+### Sous Windows:
+
+-   [Chocolatey](https://chocolatey.org)
+
+    Un installateur Windows en ligne de commande, alternative à Cygwin
+
+### Sous différents OS:
+
+-   [Vagrant](http://www.vagrantup.com), [Fabric](http://docs.fabfile.org) et autres outils de déploiement "tendance DevOPS"
+
+<div class="notes">
+Docker: comme une machine virtuelle en simplifié mais on n'a pas d'OS installé directement.
+On peut faire tourner un MapServer dedans par exemple dont la version est différente de celui sur l'OS
+</div>
+
+# Crédits
+
+## Contributeurs et traducteurs
+
+<small><small>
+<table>
+<tr>
+<td>Activity Workshop</td>
+<td>Agustín Dí­ez</td>
+<td>Aikaterini Kapsampeli</td>
+<td>Alan Beccati</td>
+<td>Alan Boudreault</td>
+<td>Alessandro Furieri</td>
+<td>Alex Mandel</td>
+<td>Alexander Bruy</td>
+</tr>
+<tr>
+<td>Alexander Kleshnin</td>
+<td>Alexander Muriy</td>
+<td>Alexandre Dube</td>
+<td>Alexey Ardyakov</td>
+<td>Amy Gao</td>
+<td>Andrea Antonello</td>
+<td>Andrea Yanza</td>
+<td>Andrey Syrokomskiy</td>
+</tr>
+<tr>
+<td>Andry Rustanto</td>
+<td>Angelos Tzotsos</td>
+<td>Anna Muñoz</td>
+<td>Anton Novichikhin</td>
+<td>Anton Patrushev</td>
+<td>Antonio Falciano</td>
+<td>Argyros Argyridis</td>
+<td>Ariel Núñez</td>
+</tr>
+<tr>
+<td>Assumpció Termens</td>
+<td>Astrid Emde</td>
+<td>Barry Rowlingson</td>
+<td>Benjamin Pross</td>
+<td>Brian Hamlin</td>
+<td>Bruno Binet</td>
+<td>Bu Kun</td>
+<td>Cameron Shorter</td>
+</tr>
+<tr>
+<td>Christophe Tufféry</td>
+<td>Christos Iossifidis</td>
+<td>Cristhian Pin</td>
+<td>Damian Wojsław</td>
+<td>Dane Springmeyer</td>
+<td>Daniel Kastl</td>
+<td>Daria Svidzinska</td>
+<td>David Mateos</td>
+</tr>
+<tr>
+<td>Denis Rykov</td>
+<td>Diego González</td>
+<td>Diego Migliavacca</td>
+<td>Dimitar Misev</td>
+<td>Dmitry Baryshnikov</td>
+<td>Dominik Helle</td>
+<td>Edgar Soldin</td>
+<td>Eike Hinderk Jürrens</td>
+</tr>
+<tr>
+<td>Elena Mezzini</td>
+<td>Eric Lemoine</td>
+<td>Erika Pillu</td>
+<td>Estela Llorente</td>
+<td>Etienne Delay</td>
+<td>Etienne Dube</td>
+<td>Evgeny Nikulin</td>
+<td>Fran Boon</td>
+</tr>
+<tr>
+<td>Frank Gasdorf</td>
+<td>Frank Warmerdam</td>
+<td>François Prunayre</td>
+<td>Friedjoff Trautwein</td>
+<td>Gavin Treadgold</td>
+<td>Giuseppe Calamita</td>
+<td>Grald Fenoy</td>
+<td>Grigory Rozhentsov</td>
+</tr>
+<tr>
+<td>Guy Griffiths</td>
+<td>Hamish Bowman</td>
+<td>Haruyuki Seki</td>
+<td>Henry Addo</td>
+<td>Hernan Olivera</td>
+<td>Howard Butler</td>
+<td>Hyeyeong Choe</td>
+<td>Ian Edwards</td>
+</tr>
+<tr>
+<td>Ian Turton</td>
+<td>Ilya Filippov</td>
+<td>Jackie Ng</td>
+<td>Jan Drewnak</td>
+<td>Jane Lewis</td>
+<td>Javier Rodrigo</td>
+<td>Javier Sánchez</td>
+<td>Jesús Gómez</td>
+</tr>
+<tr>
+<td>Jim Klassen</td>
+<td>Jing Wang</td>
+<td>Jinsongdi Yu</td>
+<td>Jody Garnett</td>
+<td>Johan Van de Wauw</td>
+<td>John Bryant</td>
+<td>Jorge Arévalo</td>
+<td>Jorge Sanz</td>
+</tr>
+<tr>
+<td>José Antonio Canalejo</td>
+<td>José Vicente Higón</td>
+<td>Judit Mays</td>
+<td>Klokan Petr Pridal</td>
+<td>Kristof Lange</td>
+<td>Lance McKee</td>
+<td>Lars Lingner</td>
+<td>Luca Delucchi</td>
+</tr>
+<tr>
+<td>Lucía Sanjaime</td>
+<td>M Iqnaul Haq Siregar</td>
+<td>Mage Whopper</td>
+<td>Manuel Grizonnet</td>
+<td>Marc-André Barbeau</td>
+<td>Marc Torres</td>
+<td>Marco Curreli</td>
+<td>Marco Puppin</td>
+</tr>
+<tr>
+<td>Margherita Di Leo</td>
+<td>Maria Vakalopoulou</td>
+<td>Mario Andino</td>
+<td>Mark Leslie</td>
+<td>Massimo Di Stefano</td>
+<td>Matthias Streulens</td>
+<td>Mauricio Miranda</td>
+<td>Mauricio Pazos</td>
+</tr>
+<tr>
+<td>Maxim Dubinin</td>
+<td>Micha Silver</td>
+<td>Michael Owonibi</td>
+<td>Michaël Michaud</td>
+<td>Mike Adair</td>
+<td>Milena Nowotarska</td>
+<td>Nacho Varela</td>
+<td>Nadiia Gorash</td>
+</tr>
+<tr>
+<td>Nathaniel V. Kelso</td>
+<td>Ned Horning</td>
+<td>Nobusuke Iwasaki</td>
+<td>Oliver Tonnhofer</td>
+<td>Otto Dassau</td>
+<td>Pasquale Di Donato</td>
+<td>Patric Hafner</td>
+<td>Paul Meems</td>
+</tr>
+<tr>
+<td>Pavel</td>
+<td>Pedro-Juan Ferrer</td>
+<td>Pirmin Kalberer</td>
+<td>Raf Roset</td>
+<td>Regina Obe</td>
+<td>Ricardo Pinho</td>
+<td>Roald de Wit</td>
+<td>Roberta Fagandini</td>
+</tr>
+<tr>
+<td>Roberto Antolin</td>
+<td>Roberto Antolí­n</td>
+<td>Roger Veciana</td>
+<td>Ruth Schoenbuchner</td>
+<td>Samuel Mesa</td>
+<td>Scott Penrose</td>
+<td>Sergey Grachev</td>
+<td>Sergio Baños</td>
+</tr>
+<tr>
+<td>Simon Cropper</td>
+<td>Simon Pigot</td>
+<td>Stefan A. Tzeggai</td>
+<td>Stefan Hansen</td>
+<td>Stefan Steiniger</td>
+<td>Stephan Meissl</td>
+<td>Steve Lime</td>
+<td>Takayuki Nuimura</td>
+</tr>
+<tr>
+<td>Thierry Badard</td>
+<td>Thomas Baschetti</td>
+<td>Thomas Gratier</td>
+<td>Tom Kralidis</td>
+<td>Toshikazu Seto</td>
+<td>Trevor Wekel</td>
+<td>Valenty González</td>
+<td>Vera</td>
+</tr>
+<tr>
+<td>Xianfeng Song</td>
+<td>Yoichi Kayama</td>
+<td>Zhengfan Lin</td>
+<td>kuzkok</td>
+<td>Òscar Fonts</td>
+</table>
+</small></small>
+<br/><br/>
+
+<small><b>Contributeurs principaux:</b> Angelos Tzotsos, Cameron Shorter, Hamish Bowman, Alex Mandel and Brian Hamlin.</small>
+
+<div class="notes">
+ <p>As you can see listed here, many people have been involved in packaging the Open Source Software for OSGeo-Live, and literally thousands of developers have helped build the software we package. Thank you. I'd like to especially mention Angelos Tzotsos, Cameron Shorter, Hamish Bowman, Alex Mandel and Brian Hamlin who have led the coordination and core packaging of the OSGeo-Live project, and LISAsoft, the Information Center for the Environment at the University of California, for providing resources and sponsorship.</p>
+</div>
+
+
+## Crédits images
+
+<small>Binoculars designed by Luis Prado from the Noun Project
+Creative Commons – Attribution (CC BY 3.0)
+http://thenounproject.com/term/binoculars/22637/
+</small>
+
+<small>Signpost designed by hunotika from the Noun Project
+Creative Commons – Attribution (CC BY 3.0)
+http://thenounproject.com/term/signpost/41982/
+</small>

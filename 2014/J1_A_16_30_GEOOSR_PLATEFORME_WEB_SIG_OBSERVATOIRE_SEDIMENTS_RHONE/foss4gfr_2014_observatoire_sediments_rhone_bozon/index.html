@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>GéoOSR | Le portail WebSIG de l'Observatoire des Sédiments du Rhône</title>
+
+		<meta name="description" content="Le potrail WebSIG de l'Observatoire des Sédiments du Rhône">
+		<meta name="author" content="Nicolas BOZON">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+	<a href="http://foss4g.fr" target="_blank" class="event">
+		<img src="img/logo-sml.png" width="150" height="65" />
+	</a>
+	<a href="http://osgeo.org" target="_blank" class="osgeo">
+		<img src="img/osgeo-logo.png" width="150" height="65" />
+	</a>
+    <a href="http://umr5600.ish-lyon.cnrs.fr/" target="_blank" class="evs">
+		<img src="img/logo-evs.png" width="65" height="65" />
+	</a>
+	
+    <a href="http://cnrs.fr" target="_blank" class="cnrs">
+		<img src="img/cnrs-logo.png" width="65" height="65" />
+	</a>
+	
+	<a href="http://mapmint.com" target="_blank" class="mm">
+		<img src="img/mapmint-logo.png" width="65" height="65" />
+	</a>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<table style="width:100%">
+						<tr>
+							<td>
+								<img src="img/geoosr-logo.png" width="300" height="300"/>
+							</td>
+							<td style="vertical-align:top;">
+								<h1>Géo<span>OSR</span></h1>
+								<h3>Portail Web SIG de </br>l'Observatoire des Sédiments</br>du Rhône</h3>
+							</td>
+						</tr>
+					</table>
+					<ul class="auth">
+					<li><b>Nicolas BOZON - <a href="http://cartogenic.com" target="_blank">Cartogenic</a></b></li>
+					<li>Guillaume Fantino - <a href="http://geopeka.com" target="_blank">Geopeka</a></li>
+					<li>Hervé PIEGAY - <a href="http://umr5600.ish-lyon.cnrs.fr/" target="_blank">UMR 5600 EVS</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Observatoire des Sédiments du Rhône</h2>
+					<table style="width:100%;margin:40px 0 0 0;">
+						<tr>
+							
+							<td style="vertical-align:top;">
+								<p class="page">Programme de recherche visant à améliorer les connaissances scientifiques relatives au <b>fleuve Rhône</b>, à son transit sédimentaire et à ses formes fluviales.</p>
+								
+								<p class="page">Crée en 2009, l'OSR regroupe des équipes scientifiques (CNRS, Irstea, ENTPE, IRSN, IFREMER) et les gestionnaires du fleuve (DREAL, Agence de l'Eau, CNR, EDF...)</p>
+								
+								
+								<center><img src="img/geoosr-logo.png" width="100" height="100"/></center>
+							</td>
+						</tr>
+					</table>
+				</section>
+
+				<section>
+					<h2>Portail <span style='text-transform:none'>Géo</span>OSR</h2>
+					<table style="width:100%;margin:30px 0 0 0;">
+						<tr>
+							<td width="450">
+								<img src="img/geoosr-extent.png" width="450" height="438" />
+							</td>
+							<td style="vertical-align:top;">
+								<p class="page">GéoOSR est la plateforme Web SIG mise en place pour publier et valoriser les résultats à composante spatiale d'OSR</p>
+								<p class="page"><b>Générateur de cartes et d'applications Web SIG</b> adapté aux besoins des équipes de recherche de l'UMR.</p>
+							</td>
+						</tr>
+					</table>
+				</section>
+
+				<section>
+					<h2>Données hétérogènes</h2>
+					
+							    <p class="page" style="margin-top:30px;">Nature des données (observations, capteurs, référentiels, scan historiques..)</p>
+								<p class="page">Formats de données (wms, postgis, shp, kml, csv, xls, jpg, tiff...)</p>
+								<img src="img/ncp.jpg" />
+								
+
+				</section>
+				
+				<section data-transition="linear" data-background="#9ddf51" data-background-transition="slide">
+					<h2 class="onc">Solution technique (1)</h2>
+					<table style="width:100%;margin:50px 0 0 0">
+						<tr>
+							<td>
+								<img src="img/logo-mm-big.png" width="300" height="300" />
+						
+							</td>
+							<td style="vertical-align:top;">
+							<h1 class="mmm">Map<span>Mint</span></h1>
+								<p class="page">Plateforme SIG et <b>générateur Web SIG</b> open source</p>
+								<p class="page"><img src="img/zoo-logo-green.png" width="100" height="100"/><img src="img/ms-logo-green.png" width="100" height="100"/><img src="img/gdal-logo-green.png" width="100" height="100"/><img src="img/ol-logo-green.png" width="100" height="100"/></p>
+								
+								<p><a href="http://mapmint.com" target="_blank" class="urm">http://mapmint.com</a></p>
+							</td>
+						</tr>
+					</table>
+				</section>
+
+				<section data-transition="linear" data-background="#abf459" data-background-transition="slide">
+					<h2 class="onc">Solution technique (2)</h2>
+					
+								<img src="img/geoosr-distiller.png" width="800" height="450" />
+					<p class="page">Module de <b>gestion</b> et de <b>traitement</b> des données</p>
+				</section>
+				
+				<section data-transition="linear" data-background="#9ddf51" data-background-transition="slide">
+										<h2 class="onc">Solution technique (3)</h2>
+					
+								<img src="img/geoosr-manager.png" width="800" height="450" />
+					<p class="page">Module de <b>création de cartes</b></p>
+				</section>
+
+				<section data-transition="linear" data-background="#abf459" data-background-transition="slide">
+					<h2 class="onc">Solution technique (4)</h2>
+					
+								<img src="img/geoosr-public.png" width="800" height="450" />
+					<p class="page">Module de <b>publication d'applications</b> </p>
+				</section>
+				<section>
+					<h2>Portail cartographique</h2>
+					
+								<img src="img/geoosr-portail.png" width="800" height="450" />
+						
+				</section>
+				
+				<section>
+					<h2>Cartographie générale</h2>
+					
+					
+								<img src="img/geoosr-general.png" width="800" height="450" />
+				</section>
+
+				<section>
+					<h2>Cartographie des marges</h2>
+												<img src="img/geoosr-marges.png" width="800" height="450" />
+				</section>
+				
+				<section>
+					<h2>Cartographie des prélèvements</h2>
+												<img src="img/geoosr-timeline.png" width="800" height="450" />
+
+				</section>
+				
+				<section>
+					<h2>Cartographie historique</h2>
+																	<img src="img/geoosr-histo.png" width="800" height="450" />
+
+				</section>
+				
+				<section data-transition="linear">
+
+					<table style="width:100%;">
+							<tr>
+							<td>
+								<img src="img/geoosr-logo.png" width="300" height="300"/>
+							</td>
+							<td style="vertical-align:top;">
+								<h1>Géo<span>OSR</span></h1>
+								<p class="page" style="margin-top:30px"">Intégration de données supplémentaires</p>
+								<p class="page">Utilisation de MapMint pour d'autres projets de l'UMR</p>
+								<p class="page">Publication d'applications thématiques</p>
+								
+							</td>
+						</tr>				</table>
+				</section>
+								
+				<section data-transition="linear" data-background="#9ddf51" data-background-transition="slide">
+					<h1 class="mmm">Map<span>Mint</span></h1>
+					<p class="page">Plateforme générique de publication et de valorisation des résultats de recherche</p>
+					<table style="width:100%; margin:30px 0 0 0;">
+						<tr>
+							<td>
+								<img src="img/driftx.png" width="100" height="100" />
+							</td>
+							<td style="vertical-align:top;">
+								<p class="paget">Drift-X WPS (UM2, Cemagref, OCU)</p>
+								<p class="page">Utilisation d'un modèle fortran dans MapMint via un chaînage de services WPS</p>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<img src="img/cias.png" width="100" height="100" />
+							</td>
+							<td style="vertical-align:top;">
+								<p class="paget">Center for Integrated Area Studies (Université de Kyoto)</p>
+								<p class="page">Utilisation de MapMint pour diffuser des données SIG historiques </p>
+								<p class="page">Développement d'un module de géoréferencement (WPS gdal_warp)
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<img src="img/logo-publicamundi.png" width="150" height="38" />
+							</td>
+							<td style="vertical-align:top;">
+								<p class="paget">Publica Mundi (Union Européenne - FP7)</p>
+								<p class="page">Développement d'un socle logiciel basé sur MapMint pour la diffusion et la réutilisation de l'open data.</p>
+								<p class="page">Interactions ZOO-project, Rasdaman et CKAN</p>
+							</td>
+						</tr>					
+					</table>
+</section>
+
+				<section>
+					<h1>Questions ?</h1>
+					<p class="auth blu">Nicolas BOZON | <a href="http://cartogenic.com" target="_blank">Cartogenic</a> | <a href="http://twitter.com/cartogenic" target="_blank">@cartogenic </p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
