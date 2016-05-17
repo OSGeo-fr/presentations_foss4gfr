@@ -158,7 +158,6 @@ Basés sur les standards: UMD, CommonJS, RequireJS, module JavaScript natif (ES6
 
 * Rejet de la complexité OGC (XML, namespaces inutiles pour beaucoup de cas d'usage simple)
 * Format cartographique cartographique interopérable, orienté web
-* Limité sur des besoins avec nécessité de précision
 
 ----
 
