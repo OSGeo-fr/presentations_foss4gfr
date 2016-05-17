@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Timothée Giraud - CNRS e-mail : mjsh GitHub :  Blog :" />
+
+
+<title>R pour les cartographes : le package cartography</title>
+
+<script src="FOSS4G-fr-2016_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="FOSS4G-fr-2016_files/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+<script src="FOSS4G-fr-2016_files/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<link href="FOSS4G-fr-2016_files/readthedown-0.1/readthedown.css" rel="stylesheet" />
+<script src="FOSS4G-fr-2016_files/readthedown-0.1/readthedown.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #dddddd; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { font-weight: bold; } /* Keyword */
+code > span.dt { color: #800000; } /* DataType */
+code > span.dv { color: #0000ff; } /* DecVal */
+code > span.bn { color: #0000ff; } /* BaseN */
+code > span.fl { color: #800080; } /* Float */
+code > span.ch { color: #ff00ff; } /* Char */
+code > span.st { color: #dd0000; } /* String */
+code > span.co { color: #808080; font-style: italic; } /* Comment */
+code > span.al { color: #00ff00; font-weight: bold; } /* Alert */
+code > span.fu { color: #000080; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #ff0000; font-weight: bold; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #ff00ff; } /* SpecialChar */
+code > span.vs { color: #dd0000; } /* VerbatimString */
+code > span.ss { color: #dd0000; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { } /* ControlFlow */
+code > span.op { } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #808080; font-style: italic; } /* Documentation */
+code > span.an { color: #808080; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #808080; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #808080; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+</head>
+
+<body>
+
+
+<div id="content" data-toggle="wy-nav-shift">
+
+<nav id="nav-top" role="navigation" aria-label="top navigation">
+    <a role="button" href="#" data-toggle="wy-nav-top"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+</nav>
+
+<div id="header">
+<h1 class="title">R pour les cartographes : le package <code>cartography</code></h1>
+</div>
+
+
+<div id="table-of-contents">
+    <h2><a href="#content">R pour les cartographes : le package <code>cartography</code></a></h2>
+    <div id="text-table-of-contents">
+      <ul>
+      <li><a href="#r">R</a><ul>
+      <li><a href="#environment">Environment</a></li>
+      <li><a href="#popularite-et-vitalite">Popularité et vitalité</a></li>
+      </ul></li>
+      <li><a href="#les-fonctionnalites-spatiales">Les fonctionnalités spatiales</a><ul>
+      <li><a href="#le-package-rgdal-importexport-dobjets-spatiaux-et-gestion-des-projections-cartographiques">Le package <code>rgdal</code>, import/export d’objets spatiaux et gestion des projections cartographiques</a></li>
+      <li><a href="#le-package-sp-manipulation-et-affichage-dobjets-spatiaux">Le package <code>sp</code>, manipulation et affichage d’objets spatiaux</a></li>
+      <li><a href="#le-package-rgeos-geotraitements">Le package <code>rgeos</code>, géotraitements</a></li>
+      <li><a href="#mais-aussi">Mais aussi…</a></li>
+      </ul></li>
+      <li><a href="#le-package-cartography">Le package <code>cartography</code></a><ul>
+      <li><a href="#les-donnees">Les données</a></li>
+      <li><a href="#carte-choroplethes">Carte Choroplethes</a></li>
+      <li><a href="#cartes-en-symboles-proportionnels">Cartes en symboles proportionnels</a></li>
+      <li><a href="#cartes-de-flux">Cartes de flux</a></li>
+      <li><a href="#discontinuites">Discontinuités</a></li>
+      <li><a href="#carroyages">Carroyages</a></li>
+      <li><a href="#cartes-lissees">Cartes lissées</a></li>
+      <li><a href="#fonds-de-carte-openstreetmap">Fonds de carte OpenStreetMap</a></li>
+      </ul></li>
+      <li><a href="#quelques-ressources-en-ligne">Quelques ressources en ligne</a></li>
+      </ul>  
+    </div>
+</div>
+
+<div id="main">
+<div id="r" class="section level1">
+<h1>R</h1>
+<ul>
+<li><p>R est un langage et un environnement permettant de réaliser une variété de traitements statistiques et de représentations graphiques.</p></li>
+<li><p>R est un logiciel libre sous license GNU General Public License.</p></li>
+<li><p>R est multiplateforme (GNU/Linux, Windows, OS X…).</p></li>
+</ul>
+<div class="figure">
+<img src="img/Rlogo.png" alt="" />
+
+</div>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+<div id="environment" class="section level2">
+<h2>Environment</h2>
+<ul>
+<li><p>R Base : <a href="https://www.r-project.org/">R</a></p></li>
+<li><p>Les packages : <a href="http://cran.cc.uoc.gr/mirrors/CRAN/">The Comprehensive R Archive Network</a> (CRAN)</p></li>
+<li><p>Environnement de développement intégré (IDE) : <a href="https://www.rstudio.com/">RStudio</a><br />
+<a href="https://elementr.hypotheses.org/237">RStudio : sa vie, son oeuvre, ses ressources</a> </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p></li>
+</ul>
+</div>
+<div id="popularite-et-vitalite" class="section level2">
+<h2>Popularité et vitalité</h2>
+<ul>
+<li><p>Plus de 131 990 questions taggées R sur <a href="https://stackoverflow.com/questions/tagged/r">StackOverflow</a></p></li>
+<li><p>Plus de 8 250 <a href="https://cran.rstudio.com/">packages</a></p></li>
+<li><p>Langage préféré des <em>data scientists</em> (<a href="http://blog.revolutionanalytics.com/2015/11/new-surveys-show-continued-popularity-of-r.html">LinkedIn</a>)</p></li>
+<li><p>Dépots les plus forkés sur <a href="http://githut.info/">GitHub</a></p></li>
+<li><p>5 <em>updates</em> in 2015</p></li>
+<li><p>174 <a href="http://blog.revolutionanalytics.com/local-r-groups.html">Local R User Groups</a>, dont 6 en France</p></li>
+</ul>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+</div>
+<div id="les-fonctionnalites-spatiales" class="section level1">
+<h1>Les fonctionnalités spatiales</h1>
+<p>Trois packages sont incontournables.</p>
+<div id="le-package-rgdal-importexport-dobjets-spatiaux-et-gestion-des-projections-cartographiques" class="section level2">
+<h2>Le package <code>rgdal</code>, import/export d’objets spatiaux et gestion des projections cartographiques</h2>
+<p><code>rgdal</code> est une interface entre R et les librairies GDAL (<a href="http://www.gdal.org/">Geospatial Data Abstraction Library</a>) et <a href="https://github.com/OSGeo/proj.4">PROJ4</a>.</p>
+<div id="import-du-shapefile-des-regions-europeennes-nuts3" class="section level4">
+<h4>Import du shapefile des régions européennes (NUTS3) :</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rgdal&quot;</span>)
+nuts3 &lt;-<span class="st"> </span><span class="kw">readOGR</span>(<span class="dt">dsn =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">layer =</span> <span class="st">&quot;nuts3&quot;</span>, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>OGR data source with driver: ESRI Shapefile 
+Source: &quot;data&quot;, layer: &quot;nuts3&quot;
+with 1448 features
+It has 7 fields</code></pre>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+</div>
+<div id="le-package-sp-manipulation-et-affichage-dobjets-spatiaux" class="section level2">
+<h2>Le package <code>sp</code>, manipulation et affichage d’objets spatiaux</h2>
+<p><code>sp</code> fournit des classes et des methodes pour les données spatiales dans R.</p>
+<div id="affichage-des-nuts3" class="section level4">
+<h4>Affichage des NUTS3 :</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;sp&quot;</span>)
+<span class="kw">class</span>(nuts3)</code></pre></div>
+<pre><code>[1] &quot;SpatialPolygonsDataFrame&quot;
+attr(,&quot;package&quot;)
+[1] &quot;sp&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nuts3@proj4string</code></pre></div>
+<pre><code>CRS arguments:
+ +proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000
++ellps=GRS80 +units=m +no_defs </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nuts3@bbox</code></pre></div>
+<pre><code>      min     max
+x 2641758 7313157
+y 1427614 5411284</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nuts3@data)</code></pre></div>
+<pre><code>     id birth_2008 death_2008 gdppps1999 gdppps2008   pop1999 pop2008
+0 AT111        272        445        509        641  39148.91   37452
+1 AT112       1195       1480       2262       3272 137469.46  146383
+2 AT113        748       1142       1368       1783 100113.63   97350
+3 AT121       2480       2119       4091       5807 238591.26  241083
+4 AT122       2266       2577       4130       5774 244959.00  251838
+5 AT123       1363       1392       3098       4504 144269.11  147468</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nuts3)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/InspectSPDF-1.png" title="" alt="" width="576" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nuts3, <span class="dt">col =</span> <span class="st">&quot;#DAE3E6&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;#8A0641&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/InspectSPDF-2.png" title="" alt="" width="576" /></p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+</div>
+<div id="le-package-rgeos-geotraitements" class="section level2">
+<h2>Le package <code>rgeos</code>, géotraitements</h2>
+<p><code>rgeos</code> donne accès à la librairie d’opérations spatiales GEOS (<a href="http://trac.osgeo.org/geos/">Geometry Engine - Open Source</a>) qui permet notamment d’effectuer les géotraitements suivants :</p>
+<ul>
+<li>Area / Perimeter</li>
+<li>Distances<br />
+</li>
+<li><strong>Buffer</strong></li>
+<li>Overlap / intersect / difference</li>
+<li>Contains / within</li>
+<li>Union</li>
+<li><strong>Dissolve</strong></li>
+<li>…</li>
+</ul>
+<div id="agregation-des-polygones-dissolve" class="section level4">
+<h4>Agrégation des polygones / dissolve</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rgeos&quot;</span>)
+europe &lt;-<span class="st"> </span><span class="kw">gUnaryUnion</span>(<span class="dt">spgeom =</span> nuts3)
+<span class="kw">plot</span>(nuts3, <span class="dt">lwd =</span> <span class="fl">0.5</span>)
+<span class="kw">plot</span>(europe, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">border =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> T)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/dissolve-1.png" title="" alt="" width="576" /></p>
+</div>
+<div id="creation-de-zones-tampons-buffer" class="section level4">
+<h4>Création de zones tampons / buffer</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rgeos&quot;</span>)
+europeBuffer &lt;-<span class="st"> </span><span class="kw">gBuffer</span>(<span class="dt">spgeom =</span> europe, <span class="dt">width =</span> <span class="dv">50000</span>)
+<span class="kw">plot</span>(europe, <span class="dt">col =</span> <span class="st">&quot;#92C5D6&quot;</span>)
+<span class="kw">plot</span>(europeBuffer, <span class="dt">add =</span> T, <span class="dt">border =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/buffer-1.png" title="" alt="" width="576" /></p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+</div>
+<div id="mais-aussi" class="section level2">
+<h2>Mais aussi…</h2>
+<p>Des liens sont possibles avec des <strong>SIG</strong> ou des <strong>bases de données spatiales</strong> :</p>
+<ul>
+<li>GRASS (<code>spgrass6</code>, <code>rgrass7</code>)<br />
+</li>
+<li>QGIS (via Processing, anciennement sextante)<br />
+</li>
+<li>ArcGis (<code>RPyGeo</code> via Python)<br />
+</li>
+<li>PostGis / PostGreSQl (<code>RPostgreSQL</code>)</li>
+</ul>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+</div>
+<div id="le-package-cartography" class="section level1">
+<h1>Le package <code>cartography</code></h1>
+<p>Conçu comme une boite à outil dédiée à la <strong>cartographie thématique</strong>, le package <a href="https://cran.r-project.org/web/packages/cartography/index.html"><code>cartography</code></a> est développé au sein de l’<a href="http://www.ums-riate.fr">UMS RIATE</a> (CNRS, CGET, Université Paris Diderot) par Nicolas Lambert et Timothée Giraud.</p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+<div id="installation" class="section level3">
+<h3>Installation</h3>
+<p>La version stable est <a href="https://cran.r-project.org/web/packages/cartography/index.html">sur le CRAN</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;cartography&quot;</span>)</code></pre></div>
+<p>La version de développement est hébergée sur <a href="https://github.com/Groupe-ElementR/cartography">GitHub</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(devtools)
+devtools::<span class="kw">install_github</span>(<span class="st">&quot;Groupe-ElementR/cartography&quot;</span>)</code></pre></div>
+<p>Vous pouvez nous faire remonter d’éventuels bugs <a href="https://github.com/Groupe-ElementR/cartography/issues/">ici</a>.</p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+<div id="les-donnees" class="section level2">
+<h2>Les données</h2>
+<p>Les exemples utilisent les jeux de données fournis avec le package. Ces données portent sur les maillages régionaux européens <a href="http://ec.europa.eu/eurostat/fr/web/nuts/overview">NUTS</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Chargement de la librairie</span>
+<span class="kw">library</span>(cartography)
+
+<span class="co"># Import de données dans la session</span>
+<span class="kw">data</span>(nuts2006)
+
+<span class="kw">ls</span>()</code></pre></div>
+<pre><code> [1] &quot;coasts.spdf&quot;    &quot;countries.spdf&quot; &quot;frame.spdf&quot;     &quot;graticule.spdf&quot;
+ [5] &quot;nuts0.df&quot;       &quot;nuts0.spdf&quot;     &quot;nuts1.df&quot;       &quot;nuts1.spdf&quot;    
+ [9] &quot;nuts2.df&quot;       &quot;nuts2.spdf&quot;     &quot;nuts3.df&quot;       &quot;nuts3.spdf&quot;    
+[13] &quot;twincities&quot;     &quot;world.spdf&quot;    </code></pre>
+<p>Les objets terminant par “.spdf”&quot; sont des objets spatiaux et ceux terminant par “.df” sont des data frames.</p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+<div id="carte-choroplethes" class="section level2">
+<h2>Carte Choroplethes</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calcul du taux de croissance annuel moyen</span>
+nuts2.df$cagr &lt;-<span class="st"> </span><span class="dv">100</span> *<span class="st"> </span>(((nuts2.df$pop2008/nuts2.df$pop1999)^(<span class="dv">1</span>/<span class="dv">9</span>)) -<span class="st"> </span><span class="dv">1</span>)
+
+<span class="co"># Cartographie</span>
+<span class="kw">choroLayer</span>(<span class="dt">spdf =</span> nuts2.spdf, <span class="dt">df =</span> nuts2.df, <span class="dt">var =</span> <span class="st">&quot;cagr&quot;</span>)
+<span class="kw">title</span>(<span class="st">&quot;Taux de croissance en Europe&quot;</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/choroMap-1.png" title="" alt="" width="576" /></p>
+<p>Après ce premier jet, il est ensuite possible de paramétrer très finement la carte : palette de couleurs, discrétisation, légende, couches d’habillage…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Construire une palette de couleurs</span>
+cols &lt;-<span class="st"> </span><span class="kw">carto.pal</span>(<span class="dt">pal1 =</span> <span class="st">&quot;green.pal&quot;</span>, <span class="dt">n1 =</span> <span class="dv">2</span>, 
+                  <span class="dt">pal2 =</span> <span class="st">&quot;red.pal&quot;</span>, <span class="dt">n2 =</span> <span class="dv">4</span>) 
+
+<span class="co"># Affichage de couches d&#39;habillage</span>
+<span class="kw">plot</span>(nuts0.spdf, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">&quot;#A6CAE0&quot;</span>)
+<span class="kw">plot</span>(world.spdf, <span class="dt">col  =</span> <span class="st">&quot;#E3DEBF&quot;</span>, <span class="dt">border=</span><span class="ot">NA</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)
+
+<span class="co"># Cartographie du taux de croissance annuel moyen</span>
+<span class="kw">choroLayer</span>(<span class="dt">spdf =</span> nuts2.spdf, <span class="dt">df =</span> nuts2.df, <span class="dt">var =</span> <span class="st">&quot;cagr&quot;</span>,<span class="co">#</span>
+           <span class="dt">breaks =</span> <span class="kw">c</span>(-<span class="fl">2.43</span>,-<span class="fl">1.0</span>,<span class="fl">0.0</span>,<span class="fl">0.5</span>,<span class="fl">1.0</span>,<span class="fl">2.0</span>,<span class="fl">3.1</span>), 
+           <span class="dt">col =</span> cols,
+           <span class="dt">border =</span> <span class="st">&quot;grey40&quot;</span>,
+           <span class="dt">lwd =</span> <span class="fl">0.5</span>, 
+           <span class="dt">legend.pos =</span> <span class="st">&quot;right&quot;</span>,
+           <span class="dt">legend.title.txt =</span> <span class="st">&quot;taux de croissance</span><span class="ch">\n</span><span class="st">annuel moyen&quot;</span>, 
+           <span class="dt">legend.values.rnd =</span> <span class="dv">2</span>, 
+           <span class="dt">add =</span> <span class="ot">TRUE</span>) 
+
+<span class="co"># Affichage de couches d&#39;habillage</span>
+<span class="kw">plot</span>(nuts0.spdf,<span class="dt">border =</span> <span class="st">&quot;grey20&quot;</span>, <span class="dt">lwd=</span><span class="fl">0.75</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)
+
+<span class="co"># Ajout des titres, légende, sources, etc.</span>
+<span class="kw">layoutLayer</span>(<span class="dt">title =</span> <span class="st">&quot;Taux de croissance en Europe&quot;</span>, 
+            <span class="dt">author =</span> <span class="st">&quot;cartography&quot;</span>, 
+            <span class="dt">sources =</span> <span class="st">&quot;Eurostat, 2008&quot;</span>, <span class="dt">frame =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="ot">NA</span>, 
+            <span class="dt">scale =</span> <span class="ot">NULL</span>,<span class="dt">coltitle =</span> <span class="st">&quot;black&quot;</span>,
+            <span class="dt">south =</span> <span class="ot">TRUE</span>) </code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/choroMap2-1.png" title="" alt="" width="576" /></p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+<div id="cartes-en-symboles-proportionnels" class="section level2">
+<h2>Cartes en symboles proportionnels</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Affichage de couches d&#39;habillage</span>
+<span class="kw">plot</span>(nuts0.spdf, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">&quot;#A6CAE0&quot;</span>)
+<span class="kw">plot</span>(world.spdf, <span class="dt">col  =</span> <span class="st">&quot;#E3DEBF&quot;</span>, <span class="dt">border=</span><span class="ot">NA</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)
+<span class="kw">plot</span>(nuts0.spdf, <span class="dt">col =</span> <span class="st">&quot;#D1914D&quot;</span>,<span class="dt">border =</span> <span class="st">&quot;grey80&quot;</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)
+
+<span class="co"># Cartographie de la population des pays en cercles proportionnels</span>
+<span class="kw">propSymbolsLayer</span>(<span class="dt">spdf =</span> nuts0.spdf, <span class="dt">df =</span> nuts0.df,<span class="co">#</span>
+                 <span class="dt">var =</span> <span class="st">&quot;pop2008&quot;</span>, 
+                 <span class="dt">symbols =</span> <span class="st">&quot;circle&quot;</span>, <span class="dt">col =</span>  <span class="st">&quot;#920000&quot;</span>,
+                 <span class="dt">legend.pos =</span> <span class="st">&quot;right&quot;</span>,
+                 <span class="dt">legend.title.txt =</span> <span class="st">&quot;Total</span><span class="ch">\n</span><span class="st">population (2008)&quot;</span>,
+                 <span class="dt">legend.style =</span> <span class="st">&quot;c&quot;</span>)
+
+<span class="co"># Ajout des titres, légende, sources, etc.</span>
+<span class="kw">layoutLayer</span>(<span class="dt">title =</span> <span class="st">&quot;Countries Population in Europe&quot;</span>,
+            <span class="dt">author =</span> <span class="st">&quot;cartography&quot;</span>,
+            <span class="dt">sources =</span> <span class="st">&quot;Eurostat, 2008&quot;</span>,
+            <span class="dt">scale =</span> <span class="ot">NULL</span>,
+            <span class="dt">south =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/propMap-1.png" title="" alt="" width="576" /></p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+<div id="cartes-de-flux" class="section level2">
+<h2>Cartes de flux</h2>
+<p>Il s’agit de représenter des données, agrégées à un niveau régional, sur les jumelages entre villes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Données sur les jumelages</span>
+<span class="kw">head</span>(twincities)</code></pre></div>
+<pre><code>     i    j fij
+1 DE14 AT11   1
+2 DE21 AT11   1
+3 DE23 AT11   1
+4 DE26 AT11   2
+5 DE91 AT11   1
+6 DEB3 AT11   1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Creation d&#39;une couche de liens</span>
+twincities.spdf &lt;-<span class="st"> </span><span class="kw">getLinkLayer</span>(<span class="dt">spdf =</span> nuts2.spdf, <span class="dt">df =</span> twincities) 
+
+<span class="co"># Affichage des liens créés</span>
+<span class="kw">plot</span>(twincities.spdf, <span class="dt">lwd =</span> <span class="fl">0.2</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/linkMap-1.png" title="" alt="" width="576" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Affichage de couches d&#39;habillage</span>
+<span class="kw">plot</span>(nuts0.spdf, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">&quot;#A6CAE0&quot;</span>)
+<span class="kw">plot</span>(world.spdf, <span class="dt">col  =</span> <span class="st">&quot;#E3DEBF&quot;</span>, <span class="dt">border=</span><span class="ot">NA</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)
+<span class="kw">plot</span>(nuts2.spdf, <span class="dt">col =</span> <span class="st">&quot;#D1914D&quot;</span>,<span class="dt">border =</span> <span class="st">&quot;grey80&quot;</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)
+
+<span class="co"># Cartographie des liens</span>
+<span class="kw">gradLinkLayer</span>(<span class="dt">spdf =</span> twincities.spdf, <span class="dt">df =</span> twincities,   <span class="co">#</span>
+              <span class="dt">spdfids =</span> <span class="st">&quot;i&quot;</span>, <span class="dt">spdfide =</span> <span class="st">&quot;j&quot;</span>, <span class="dt">dfids =</span> <span class="st">&quot;i&quot;</span>, <span class="dt">dfide =</span> <span class="st">&quot;j&quot;</span>, 
+              <span class="dt">var =</span> <span class="st">&quot;fij&quot;</span>, 
+              <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">30</span>), 
+              <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">10</span>), 
+              <span class="dt">col =</span> <span class="st">&quot;#92000090&quot;</span>,
+              <span class="dt">legend.pos =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.frame =</span> <span class="ot">TRUE</span>,
+              <span class="dt">legend.title.txt =</span> <span class="st">&quot;Number of Agreements</span><span class="ch">\n</span><span class="st">(regional level)&quot;</span>,
+              <span class="dt">add =</span> <span class="ot">TRUE</span>)
+
+<span class="co"># Ajout des titres, légende, sources, etc.</span>
+<span class="kw">layoutLayer</span>(<span class="dt">title =</span> <span class="st">&quot;International Twinning Agreements Between Cities&quot;</span>, 
+            <span class="dt">author =</span> <span class="st">&quot;cartography&quot;</span>, 
+            <span class="dt">sources =</span> <span class="st">&quot;Sources: Adam Ploszaj &amp; Wikipedia, 2011&quot;</span>,
+            <span class="dt">scale =</span> <span class="ot">NULL</span>, <span class="dt">south =</span> <span class="ot">TRUE</span>, <span class="dt">frame =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="ot">NA</span>, 
+            <span class="dt">coltitle =</span> <span class="st">&quot;black&quot;</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/linkMap-2.png" title="" alt="" width="576" /></p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+<div id="discontinuites" class="section level2">
+<h2>Discontinuités</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Construction les polylignes des frontières inter-étatiques</span>
+nuts0.contig.spdf &lt;-<span class="st"> </span><span class="kw">getBorders</span>(nuts0.spdf)
+
+<span class="kw">plot</span>(nuts0.spdf, <span class="dt">bg =</span> <span class="st">&quot;#A6CAE0&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;#D1914D&quot;</span>,<span class="dt">border =</span> <span class="st">&quot;grey80&quot;</span>)
+<span class="kw">plot</span>(nuts0.contig.spdf, <span class="dt">col =</span> <span class="dv">1</span>:<span class="kw">nrow</span>(nuts0.contig.spdf), <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/disc-1.png" title="" alt="" width="576" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nuts0.contig.spdf@data)</code></pre></div>
+<pre><code>         id id1 id2
+AT_CH AT_CH  AT  CH
+AT_CZ AT_CZ  AT  CZ
+AT_DE AT_DE  AT  DE
+AT_HU AT_HU  AT  HU
+AT_IT AT_IT  AT  IT
+AT_LI AT_LI  AT  LI</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calcul du PIB/habitant</span>
+nuts0.df$gdpcap &lt;-<span class="st"> </span>nuts0.df$gdppps2008/nuts0.df$pop2008*<span class="dv">1000000</span>
+
+<span class="co"># Affichage de couches d&#39;habillage</span>
+<span class="kw">plot</span>(nuts0.spdf, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">&quot;#A6CAE0&quot;</span>)
+<span class="kw">plot</span>(world.spdf, <span class="dt">col  =</span> <span class="st">&quot;#E3DEBF&quot;</span>, <span class="dt">border=</span><span class="ot">NA</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)
+
+<span class="co"># Cartographie du PIB/habitants</span>
+<span class="kw">choroLayer</span>(<span class="dt">spdf =</span> nuts0.spdf, <span class="dt">df =</span> nuts0.df, <span class="dt">var =</span> <span class="st">&quot;gdpcap&quot;</span>, <span class="co">#</span>
+           <span class="dt">border =</span> <span class="st">&quot;grey80&quot;</span>,
+           <span class="dt">col =</span> <span class="kw">carto.pal</span>(<span class="dt">pal1 =</span> <span class="st">&quot;kaki.pal&quot;</span>, <span class="dt">n1 =</span> <span class="dv">6</span>), 
+           <span class="dt">method =</span> <span class="st">&quot;quantile&quot;</span>,
+           <span class="dt">nclass =</span> <span class="dv">6</span>, <span class="dt">add=</span><span class="ot">TRUE</span>, 
+           <span class="dt">legend.pos =</span> <span class="st">&quot;right&quot;</span>, 
+           <span class="dt">legend.values.rnd =</span> -<span class="dv">2</span>,
+           <span class="dt">legend.title.txt =</span> <span class="st">&quot;GDP per Capita</span><span class="ch">\n</span><span class="st">(in euros)&quot;</span>)
+
+<span class="co"># Plot discontinuities</span>
+<span class="kw">discLayer</span>(<span class="dt">spdf =</span> nuts0.contig.spdf, <span class="dt">df =</span> nuts0.df, <span class="dt">var =</span> <span class="st">&quot;gdpcap&quot;</span>, 
+          <span class="dt">type =</span> <span class="st">&quot;rel&quot;</span>, 
+          <span class="dt">method =</span> <span class="st">&quot;equal&quot;</span>, 
+          <span class="dt">nclass =</span> <span class="dv">4</span>, 
+          <span class="dt">threshold =</span> <span class="fl">0.5</span>, 
+          <span class="dt">sizemin =</span> <span class="fl">0.5</span>, 
+          <span class="dt">sizemax =</span> <span class="dv">6</span>, 
+          <span class="dt">col=</span><span class="st">&quot;red&quot;</span>,
+          <span class="dt">legend.values.rnd =</span> <span class="dv">1</span>,
+          <span class="dt">legend.title.txt =</span> <span class="st">&quot;Discontinuities in </span><span class="ch">\n</span><span class="st">GDP per Capita</span><span class="ch">\n</span><span class="st">(relative)&quot;</span>,
+          <span class="dt">legend.pos =</span> <span class="st">&quot;topright&quot;</span>, 
+          <span class="dt">add=</span><span class="ot">TRUE</span>)
+
+<span class="co"># Ajout des titres, légende, sources, etc.</span>
+<span class="kw">layoutLayer</span>(<span class="dt">title =</span> <span class="st">&quot;Wealth Disparities in Europe&quot;</span>,
+            <span class="dt">coltitle =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col =</span> <span class="ot">NA</span>,
+            <span class="dt">sources =</span> <span class="st">&quot;Eurostat, 2011&quot;</span>, 
+            <span class="dt">scale =</span> <span class="ot">NULL</span>,
+            <span class="dt">author =</span> <span class="st">&quot;cartography&quot;</span>, 
+            <span class="dt">frame =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/disc-2.png" title="" alt="" width="576" /></p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+<div id="carroyages" class="section level2">
+<h2>Carroyages</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Creation d&#39;une grille régulière</span>
+mygrid &lt;-<span class="st"> </span><span class="kw">getGridLayer</span>(<span class="dt">spdf=</span>nuts2.spdf, <span class="dt">cellsize =</span> <span class="dv">200000</span>)
+
+<span class="co"># Affichage de la grille</span>
+<span class="kw">plot</span>(mygrid$spdf)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/grid-1.png" title="" alt="" width="576" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Adaptation des données à la grille</span>
+datagrid.df &lt;-<span class="st"> </span><span class="kw">getGridData</span>(<span class="dt">x =</span> mygrid, <span class="dt">df =</span> nuts2.df, <span class="dt">var =</span> <span class="st">&quot;pop2008&quot;</span>) 
+datagrid.df$densitykm &lt;-<span class="st"> </span>datagrid.df$pop2008_density*<span class="dv">1000</span>*<span class="dv">1000</span>
+
+<span class="co"># Affichage de couches d&#39;habillage</span>
+<span class="kw">plot</span>(nuts0.spdf, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">&quot;#A6CAE0&quot;</span>)
+<span class="kw">plot</span>(world.spdf, <span class="dt">col  =</span> <span class="st">&quot;#E3DEBF&quot;</span>, <span class="dt">border=</span><span class="ot">NA</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)
+
+<span class="co"># Cartographie de la densité de population </span>
+<span class="kw">choroLayer</span>(<span class="dt">spdf =</span> mygrid$spdf,                         <span class="co">#</span>
+           <span class="dt">df =</span> datagrid.df,
+           <span class="dt">var =</span> <span class="st">&quot;densitykm&quot;</span>, 
+           <span class="dt">border =</span> <span class="st">&quot;grey80&quot;</span>, 
+           <span class="dt">col =</span> <span class="kw">carto.pal</span>(<span class="dt">pal1 =</span> <span class="st">&quot;wine.pal&quot;</span>, <span class="dt">n1 =</span> <span class="dv">6</span>), 
+           <span class="dt">legend.pos =</span> <span class="st">&quot;topright&quot;</span>,
+           <span class="dt">method =</span> <span class="st">&quot;q6&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>,
+           <span class="dt">legend.title.txt =</span> <span class="st">&quot;Population Density</span><span class="ch">\n</span><span class="st">(inhabitant/km²)&quot;</span>)
+
+<span class="co"># Ajout des titres, légende, sources, etc.</span>
+<span class="kw">layoutLayer</span>(<span class="dt">title =</span> <span class="st">&quot;Population Density&quot;</span>, 
+            <span class="dt">coltitle =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">col =</span> <span class="ot">NA</span>,
+            <span class="dt">sources =</span> <span class="st">&quot;Eurostat, 2011&quot;</span>, <span class="dt">scale =</span> <span class="ot">NULL</span>, 
+            <span class="dt">author =</span> <span class="st">&quot;cartography&quot;</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/grid-2.png" title="" alt="" width="576" /></p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+<div id="cartes-lissees" class="section level2">
+<h2>Cartes lissées</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Affichage de couches d&#39;habillage</span>
+<span class="kw">plot</span>(nuts0.spdf, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">bg =</span> <span class="st">&quot;#A6CAE0&quot;</span>)  <span class="co">#</span>
+<span class="kw">plot</span>(world.spdf, <span class="dt">col =</span> <span class="st">&quot;#E3DEBF&quot;</span>, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)
+
+nuts3.df$gdppps2008 &lt;-<span class="st"> </span>nuts3.df$gdppps2008 *<span class="st"> </span><span class="fl">1e+06</span>
+
+<span class="co"># Cartographie des potentiels de PIB/Hab</span>
+<span class="kw">smoothLayer</span>(<span class="dt">spdf =</span> nuts3.spdf, <span class="dt">df =</span> nuts3.df, <span class="dt">var =</span> <span class="st">&quot;gdppps2008&quot;</span>, <span class="dt">var2 =</span> <span class="st">&quot;pop2008&quot;</span>, 
+    <span class="dt">span =</span> <span class="dv">75000</span>, <span class="dt">beta =</span> <span class="dv">2</span>, <span class="dt">mask =</span> nuts0.spdf, <span class="dt">legend.title.txt =</span> <span class="st">&quot;Potential</span><span class="ch">\n</span><span class="st">GDP per capita&quot;</span>, 
+    <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">legend.pos =</span> <span class="st">&quot;topright&quot;</span>, <span class="dt">legend.values.rnd =</span> -<span class="dv">2</span>)
+
+<span class="co"># Ajouter un court text sur la carte</span>
+<span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">6271272</span>, <span class="dt">y =</span> <span class="dv">3743765</span>, <span class="dt">labels =</span> <span class="st">&quot;Distance function:</span><span class="ch">\n</span><span class="st">- type = exponential</span><span class="ch">\n</span><span class="st">- beta = 2</span><span class="ch">\n</span><span class="st">- span = 75 km&quot;</span>, 
+    <span class="dt">cex =</span> <span class="fl">0.8</span>, <span class="dt">adj =</span> <span class="dv">0</span>, <span class="dt">font =</span> <span class="dv">3</span>)
+
+<span class="co"># Ajout des titres, légende, sources, etc.</span>
+<span class="kw">layoutLayer</span>(<span class="dt">title =</span> <span class="st">&quot;Wealth Inequality in Europe&quot;</span>, <span class="dt">sources =</span> <span class="st">&quot;Basemap: UMS RIATE, 2015 - Data: Eurostat, 2008&quot;</span>, 
+    <span class="dt">author =</span> <span class="st">&quot;T. Giraud, 2015&quot;</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/smooth-1.png" title="" alt="" width="576" /></p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+<div id="fonds-de-carte-openstreetmap" class="section level2">
+<h2>Fonds de carte OpenStreetMap</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;nuts2006&quot;</span>)
+<span class="co"># extract Denmark</span>
+spdf &lt;-<span class="st"> </span>nuts0.spdf[nuts0.spdf$id ==<span class="st"> &quot;DK&quot;</span>, ]
+<span class="co"># Download the tiles, extent = Denmark</span>
+den &lt;-<span class="st"> </span><span class="kw">getTiles</span>(<span class="dt">spdf =</span> spdf, <span class="dt">type =</span> <span class="st">&quot;osmtransport&quot;</span>, <span class="dt">crop =</span> <span class="ot">TRUE</span>, <span class="dt">zoom =</span> <span class="dv">7</span>)
+<span class="kw">class</span>(den)</code></pre></div>
+<pre><code>[1] &quot;RasterBrick&quot;
+attr(,&quot;package&quot;)
+[1] &quot;raster&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot the tiles</span>
+<span class="kw">tilesLayer</span>(den)
+<span class="co"># Plot countries</span>
+<span class="kw">plot</span>(spdf, <span class="dt">border =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)
+<span class="co"># Map tiles sources</span>
+<span class="kw">mtext</span>(<span class="dt">text =</span> <span class="st">&quot;Map data © OpenStreetMap contributors, under CC BY SA.&quot;</span>, <span class="dt">side =</span> <span class="dv">1</span>, 
+    <span class="dt">adj =</span> <span class="dv">0</span>, <span class="dt">cex =</span> <span class="fl">0.7</span>, <span class="dt">font =</span> <span class="dv">3</span>, <span class="dt">line =</span> -<span class="dv">2</span>)</code></pre></div>
+<p><img src="FOSS4G-fr-2016_files/figure-html/osm-1.png" title="" alt="" width="480" /></p>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+</div>
+<div id="quelques-ressources-en-ligne" class="section level1">
+<h1>Quelques ressources en ligne</h1>
+<ul>
+<li><a href="https://stat.ethz.ch/mailman/listinfo/r-sig-geo">R-sig-Geo Mailing list</a> <em>R Special Interest Group on using Geographical data and Mapping</em>.<br />
+<em>Mailing list</em> dédiée aux discussions sur l’utilisation des packages et données géographiques dans R<br />
+</li>
+<li><a href="https://cran.r-project.org/web/views/Spatial.html">CRAN Task View: Analysis of Spatial Data</a><br />
+Suivi des packages portant sur l’analyse des données spatiales.</li>
+<li><a href="http://www.r-bloggers.com/">R-bloggers</a><br />
+Agrégateur de blogs sur R, généraliste mais les post géographiques sont assez fréquents.<br />
+</li>
+<li><a href="http://link.springer.com/book/10.1007/978-1-4614-7618-4">Bivand, R.S., Pebesma, E.J., and Gomez-Rubio, V. (2013). <em>Applied spatial data analysis with R</em>. 2nd ed. New York: Springer-Verlag.</a><br />
+Ouvrage de référence sur l’analyse de données spatiales avec R.<br />
+</li>
+<li><a href="http://elementr.hypotheses.org/">Le Groupe ElementR</a><br />
+Les activités de ce groupe consistent à organiser des séances de formation et à produire des matériaux pédagogiques sur l’utilisation du logiciel R en sciences humaines et sociales. Exemples de séances :
+<ul>
+<li>Recherche reproductible et création de packages<br />
+</li>
+<li>Régression multiniveaux<br />
+</li>
+<li>Analyse de flux et modèles gravitaires<br />
+</li>
+<li>Analyse de données spatio-temporelles<br />
+</li>
+<li>Cartographie de flux<br />
+</li>
+<li>Créer des applications interactives avec R et shiny</li>
+<li>Analyse de rasters<br />
+</li>
+<li>Extraction de contenus web - web scraping</li>
+</ul></li>
+<li><a href="http://framabook.org/r-et-espace/">ElementR, G. (2014). <em>R et espace: traitement de l’information géographique</em>. Framasoft.</a><br />
+Ouvrage du Groupe ElementR.<br />
+</li>
+<li><a href="http://www.armand-colin.com/manuel-de-cartographie-principes-methodes-applications-9782200612856">Lambert, N., Zanin, C. (2016). <em>Manuel de cartographie - Principes, méthodes, applications</em>. Armand Colin.</a><br />
+Manuel de cartographie.</li>
+</ul>
+<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+<div id="merci-de-votre-attention" class="section level4">
+<h4>Merci de votre attention!</h4>
+<p>Le package sur GitHub : <a href="https://github.com/Groupe-ElementR/cartography/" class="uri">https://github.com/Groupe-ElementR/cartography/</a></p>
+<p>Carnet de recherche R Géomatique : <a href="http://rgeomatic.hypotheses.org/" class="uri">http://rgeomatic.hypotheses.org/</a></p>
+<p>Cette présentation : <a href="http://wukan.ums-riate.fr/FOSS4G-fr-2016/FOSS4G-fr-2016.html" class="uri">http://wukan.ums-riate.fr/FOSS4G-fr-2016/FOSS4G-fr-2016.html</a> </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+</div>
+</div>
+</div>
+
+
+</div>
+
+<div id="postamble" data-toggle="wy-nav-shift" class="status">
+<p class="author"><span class="glyphicon glyphicon-user"></span> Timothée Giraud - CNRS</br> e-mail : <a href="mailto:timothee.giraud@ums-riate.fr"><img src="img/logo/emblem-mail.png" alt="mjsh" /></a> GitHub : <a href="https://github.com/rCarto"><img src="img/logo/GitHub-Mark-Light-32px.png" alt="" /></a> Blog : <a href="http://rgeomatic.hypotheses.org/"><img src="img/logo/rsz_1hypo.png" alt="" /></a></br><a href="http://www.ums-riate.fr"><img src="img/logo/riate.png" alt="" /></a></p>
+<p class="date"><span class="glyphicon glyphicon-calendar"></span> FOSS4G Paris - 2016</p>
+</div>
+
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>FOSS4G-fr 2016 ouverture</title>
+
+		<meta name="description" content="FOSS4g-fr 2016">
+		<meta name="author" content="Etienne DELAY">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night_osgeofr.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div id="myLogo" style="background: url(img/sticker_osgeofr_bgWhite.png);
+                        position: absolute;
+                        bottom: 100px;
+                        left: 100px;
+                        width: 221px;
+                        height: 245px;">
+         </div>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>FOSS4G-fr 2016</h1>
+					<h4>Rencontre francophone des développeurs et utilisateurs de logiciels libres dédiés à la géomatique</h4>
+					<img src="img/logo-foss4gfr2016.png">
+					<p>
+						<small> 10 - 12 mai 2016 à l'ENSG et sur <a href="https://twitter.com/foss4gfr">@FOSS4GFR</a><br>
+						Presenté par <a href="https://twitter.com/ElCep">Etienne Delay</a> .
+						</small>
+					</p>
+				</section>
+				<!-- Section OSGeo -->
+				<section>
+					<section>
+						<h2>Un peu d'histoire</h2>
+					</section>
+					<section>
+						<h2>Le FOSS4G ? Quezako</h2>
+						<p>FOSS4G est un acronyme pour <i>Free and Open Source Software for Geospatial</i>. <strong>C'est le rendez-vous annuel autour des questions de géomatique sous le patronage de l'OSGeo depuis 2006</strong>. L'idée d'un rendez-vous autour des problématiques défendues par l'OSGeo est inspirée des rencontres des communautés GRASS-GIS et MapServer qui avaient commencé autour des années 2000.</p>
+						<p><strong>Le FOSS4G-fr est la déclinaison française de ce mouvement !</strong></p>
+						<p>Toutes les informations sur les différents FOSS4G sur <a href="http://www.foss4g.org/">foss4g.org/</a></p>
+						<img src="img/FOSS4G_2016.png">
+					</section>
+					<section>
+						<h2>Vous avez dit OSGeo ?</h2>
+						<p>l'<a href="http://www.osgeo.org/content/foundation/about.html">OSGeo</a> (<i>Open Source Geospatial</i> foundation) existe depuis <strong>2006</strong>. C'est une organisation à but non lucratif dont la mission est de favoriser <strong>l'adoption mondiale</strong> de la <strong>technologie géospatiale ouverte</strong> en étant un socle logiciel inclusif consacré à une <strong>philosophie ouverte</strong> et au <strong>développement communautaire</strong> participatif.</p>
+					</section>
+					<section>
+						<h2>10 ans!</h2>
+						<img src="img/anniv.gif", alt="gif anniversaire" height="350px">
+					</section>
+					<section>
+						<h2>Les années 90 </h2>
+						<img src="img/time_line.png" alt="time line osgeo", width="100%">
+					</section>
+					<section>
+						<h2><i>"Triple helix concept"</i></h2>
+						<ol>
+							<li>Réunir des gens issus de différents secteurs de la société</li>
+							<ul>
+								<li>académique</li>
+								<li>gouvernementale</li>
+								<li>industrielle</li>
+							</ul>
+							<li>Ouvert, participatif et accueillant</li>
+							<li>Free (<i>think of “free speech”, not “free beer”</i> &#127867;)</li>
+						</ol>
+						<p>Co-construire des outils adaptés !</p>
+						<p><small>Source : <a href="https://twitter.com/DFrigne">Dirk Frigne 2016</a></small></p>
+					</section>
+					<section>
+						<h2>Des outils adaptés?</h2>
+						<p align="left" >l'outil juste répond à trois exigences : </p>
+						<ul style="width: 60%;">
+						 	<li>il est générateur d'efficience sans dégrader l'autonomie personnelle,</li>
+							<li>il ne suscite ni esclaves ni maîtres,</li>
+							<li>il élargit le rayon d'action personnel.</li>
+					 	</ul>
+					 	<img src="img/Ivan_Illich_artwork_1.jpg" alt="ilitch" width="20%" style="float: right">
+						<p style="text-align:right;"> Ivan Illiche, 1973, La convivialité, p.27</p>
+						<p><small>Illustration : <a href="https://fr.wikipedia.org/wiki/Ivan_Illich#/media/File:Ivan_Illich_artwork_1.jpg">wikimedia.org</a></small></p>
+					</section>
+					<section>
+						<h2>Justice sociale !</h2>
+						<img src="img/social_justice.jpg", alt="justice world_cloud", height="400px">
+					</section>
+					<section>
+						<h2>L'OSGeo est donc : une communauté de communautés</h2>
+						<img width="500px" src="img/Osgeo-live.gif">
+						<p><small>Source : Arnulf Christl <a href="http://arnulf.us/OSGeo">blog</a></small></p>
+					</section>
+					<section>
+						<h2>Et ça sert à quoi l'OSGeo ?</h2>
+						<ul>
+							<li>L'OSGeo offre un soutien financier, organisationnel et juridique à la communauté géospatiale open source.</li>
+							<li>Elle sert d'entité juridiquement indépendante à laquelle les membres peuvent contribuer par du code, des financements, <i>etc.</i>, en sachant que leurs contributions seront maintenues au profit du public.</li>
+							<li>Elle sensibilise aux enjeux du logiciel libre en géomatique.</li>
+							<li>Elle fournit une plateforme commune pour améliorer la collaboration entre les projets.</li>
+							<li>Elle garantit une bonne gouvernance des projets incubés</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Comment ça fonctionne ? </h2>
+						<ul>
+							<li><i>Board of Directors</i> (9 membres)</li>
+							<li><i>Officers</i> (32 membres)</li>
+							<li><i>Chapter Members</i> (279 membres)</li>
+						</ul>
+						<p>Des chapitres locaux dans 44 pays</p>
+						<img width="500px" src="img/The-structure-of-osgeo.png">
+						<p><small>Source : Arnulf Christl <a href="http://arnulf.us/OSGeo">blog</a></small></p>
+					</section>
+					<section>
+						<h2>Et ils viennent d'où ?</h2>
+						<table style="width:95%">
+						  <tr>
+						    <td><img width="370px" src="img/OSGeo-membres.png"></td>
+						    <td><img width="400px" src="img/osgeo_chapter_membres.png"></td>
+						  </tr>
+						</table>
+						<p><small>illustrations de <a href="https://twitter.com/xurxosanz">Jorge Sanz</a> (@xurxosanz)</small></p>
+					</section>
+				</section>
+				<!-- Section OSGeo fr-->
+				<section>
+					<section>
+						<h2>Et l'OSGeo-fr ?</h2>
+						<img height="500pc" src="img/dingos-géo800x600.png" alt="Framablog">
+						<p><small>Source : <a href="http://framablog.org/2016/05/05/a-la-rencontre-des-geographes-libres/">framablog</a></small></p>
+					</section>
+					<section>
+						<h2>8 ans</h2>
+						<p>L'OSGeo-fr est une association loi 1901, déclarée au Journal Officiel le 23 août 2008</p>
+						<ul>
+							<li>5 membres du bureau</li>
+							<li>50 adhérents à l'association</li>
+							<li>273 inscrits sur la liste de diffusion francophone</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Le bureau</h2>
+						<table style="width:100%">
+						  <tr>
+						    <td>
+						    	Président<br>
+						    	<img width="150px" src="img/bureau/etienne.jpg", alt="Etienne"><br>
+						    	<small>Etienne DELAY</small>
+						    </td>
+						    <td>
+						    	Trésorier<br>
+						    	<img width="150px" src="img/bureau/jean-marie.png", alt="Jean-Marie"><br>
+						    	<small>Jean-Marie Arsac</small>
+						    </td>
+						    <td>
+						    	Secrétaire<br>
+						    	<img height="200px" src="img/bureau/anne.png", alt="Anne"><br>
+						    	<small>Anne Quesnel</small>
+						    </td>
+						  </tr>
+						  <tr>
+						    <td>
+						    	Resp. communication<br>
+						    	<img height="200px" src="img/bureau/thomas.png", alt="thomas">
+						    	<small>Thomas Gratier</small>
+						    </td>
+						    <td>
+						    	Resp. infrastructure<br>
+						    	<img height="200px" src="img/bureau/simon.jpg", alt="Simon">
+						    	<small>Simon Georget</small>
+						    </td>
+						  </tr>
+						</table> 
+					</section>
+					<section>
+						<h2>Les événements 2015 - 2016</h2>
+						<ul>
+							<li>Trad Sprint</li>
+							<li>Code Sprint</li>
+							<li>Rencontre des utilisteurs de Qgis</li>
+							<li>FOSS4g-fr</li>
+						</ul>
+						<br>
+						<img src="img/600px-Logo-TOSPrint_Paris.png" height="250px" alt="logo Code sprint">
+					</section>
+					<section>
+						<img width="800px" src="img/we_need_you.jpeg">
+						<p>Adhérer, c'est participer et rendre possible la suite !</p>
+						<p><small>Source de l'image: <a href="http://rva.org.uk/article/rva-youth-we-need-you/">Reading voluntary action</a></small></p>
+					</section>
+				</section>
+
+				<!-- Section Organisation du FOSS4G-->
+				<section>
+					<section>
+						<h2>Le FOSS4G-fr</h2>
+					</section>
+					<section>
+						<h2>2014</h2>
+						<ul>
+							<li>Un petit groupe de bénévoles</li>
+							<li>Plus d'un an de préparation</li>
+							<li>Des centaines d'heures d'IRC</li>
+						</ul>
+						<p>3 jours d'événement, 8 ateliers, 44 conférences, 200 participants !</p>
+					</section>
+					<section>
+						<h2>En 2016 : ils ont donné de leur temps !</h2>
+						<small>
+						<ul>
+							<li><strong>Responsable projet</strong> : Etienne Delay.</li>
+							<li><strong>Comité de communication</strong> : Simon Georget (responsable), Olivier Courtin, Virginie Jourdan, Nicolas Roelandt.</li>
+							<li><strong>Comité de financement</strong> : Jean-Marie Arsac.</li>
+							<li><strong>Comité de programme</strong> :Pierre-André Le Ny (responsable), Audrey Malherbe, Arnaud Van De Castelee, Benoit Fournier, Christophe Tufféry, Frédéric Jacon, Nicolas Roelandt, Yves Barthélémy.</li>
+							<li><strong>Comité logistique</strong> : Olivier Courtin (Responsable), Hugues François, Didier Richard.</li>
+							<li><strong>Comité Workshops</strong> : Pierre-André Le Ny (responsable), Hugues François.</li>
+						</ul>
+						<p align="left">Responsables :</p>
+						</small>
+						<img width="150px" src="img/bureau/etienne.jpg", alt="Etienne">
+						<img height="200px" src="img/bureau/simon.jpg", alt="Simon">
+						<img width="150px" src="img/bureau/jean-marie.png", alt="Jean-Marie">
+						<img height="200px" src="img/resp/pa.JPG", alt="Pierre André">
+						<img height="200px" src="img/resp/olivier.png", alt="Olivier">
+					</section>
+					<section>
+						<h2>2016</h2>
+						<p>
+							Cette année le <a href="http://osgeo.asso.fr/foss4gfr-2016/">FOSS4G-fr</a> c'est : 10 workshops et 41 conférences
+						</p>
+					</section>
+					<section>
+						<h2>Et pour certains ça a commencé hier</h2>
+						<table style="width:100%">
+						  <tr>
+						    <td>
+						    	<img src="img/atelier.JPG" height="180px">
+						    </td>
+						    <td>
+						    	<img src="img/atelier2.JPG" height="180px">
+						    </td>
+						    <td>
+						    	<img src="img/atelier3.JPG" height="180px">
+						    </td>
+						  </tr>
+						  <tr>
+						    <td>
+						    	<img src="img/atelier4.JPG" height="180px">
+						    </td>
+						    <td>
+						    	<img src="img/atelier5.JPG" height="180px">
+						    </td>
+						    <td>
+						    	<img src="img/atelier6.JPG" height="180px">
+						    </td>
+						  </tr>
+						</table> 
+					</section>
+				</section>
+				<!-- Section sponsor-->
+				<section>
+					<section>
+						<h2>Le FOSS4G-fr est possible grâce à nos sponsors</h2>
+					</section>
+					<section>
+						<img width="350px" src="img/sponsor/sponsor-or.png">
+						<table style="width:65%">
+						  <tr>
+						    <td><img height="200" src="img/sponsor/logo-ensg.png"></td>
+						    <td align="right"><img height="150px" src="img/sponsor/oslandia_logo.png"></td>
+						  </tr>
+						  <tr>
+						    <td><img width="200px" src="img/sponsor/camptocamp_logo.png"></td>
+						    <td align="right"><img height="100" src="img/sponsor/geomatys_logo.png"></td>
+						  </tr>
+						</table> 
+					</section>
+					<section>
+						<img width="350px" src="img/sponsor/sponsor-argent.png">
+						</br>
+						<td><img height="150" src="img/sponsor/logo-3liz.png"></td>
+					</section>
+					<section>
+						<img width="350px" src="img/sponsor/sponsor-bronze.png">
+						<table style="width:65%">
+						  <tr>
+						    <td><img width="150px" src="img/sponsor/logo-veremes.png"></td>
+						    <td><img width="150px" src="img/sponsor/logo-geoplessis.png"></td>
+						    <td><img width="150px" src="img/sponsor/logo-ATOL-CD.png"></td>
+						  </tr>
+						  <tr>
+						    <td><img width="150px" src="img/sponsor/logo_alkante.jpg"></td>
+						    <td><img width="150px" src="img/sponsor/logo-dalibo.png"></td>
+						  </tr>
+						</table> 
+					</section>
+					<section>
+						<h2>Le FOSS4G-fr est possible grâce vous</h2>
+						<img width="85%" src="img/vous.JPG">
+						<small>participants J1 - FOSS4G-fr 2014</small>
+					</section>
+				</section>
+				<!-- Section programme et information utiles -->
+				<section>
+					<section>
+						<h2>Informations utiles</h2>
+					</section>
+					<section>
+						<h2>Déroulé de la journée</h2>
+						<ul>
+							<li>Introduction &#x1f50a; &#x1f3c1;</li>
+							<li>Conférences &#x1f50a;</li>
+							<li>Pause &#x2615;</li>
+							<li>Conférences &#x1f50a;</li>
+							<li>Repas &#x2edd;</li>
+							<li>Conférences &#x1f50a;</li>
+							<li>Pause &#x2615;</li>
+							<li>Conférences &#x1f50a;</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Pense pas bête</h2>
+						<ul>
+							<li>Deux salles</li>
+							<ul>
+								<li>Salle A &#x2192; Cauchi </li>
+								<li>Salle B &#x2192; Bienvenu </li>
+							</ul>
+							<li>Twitter &#x1f426;</li>
+							<ul>
+								<li><a href="https://twitter.com/osgeofr">@osgeofr</a></li>
+								<li><a href="https://twitter.com/FOSS4GFR">@foss4gfr</a></li>
+								<li><strong>#foss4gfr</strong></li>
+							</ul>
+						</ul>
+
+					</section>
+					<section>
+						<h2>Twitter !</h2>
+						<a class="twitter-timeline"  href="https://twitter.com/hashtag/foss4gfr" data-widget-id="730257261130596352" valigne="top">Tweets sur #foss4gfr</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            			<br>
+            			<br>
+            			<br>
+            			<br>
+            			<a href="">widget</a>	
+          
+					</section>
+				</section>
+
+
+				
+
+				<section style="text-align: left;">
+					<h1>THE END</h1>
+					<p>
+						&#x25b6; <br>
+						&#x2328; &#x2328; <br>
+						&#x1f37b; &#x2615; &#x1f37b; &#x1f354; &#x2615;<br>
+						&#x1f6b9; &#x1f6b9; &#x1f6b9; &#x1f6b9; &#x1f6b9; &#x1f6b9; &#x1f6b9; &#x1f6b9; &#x1f6b9; &#x1f6b9; &#x1f6b9; &#x1f6b9; &#x1f6b9; <br>
+						&#x56cd;
+					</p>
+					<p style="text-align: center;"> &#x263b; enjoy !</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

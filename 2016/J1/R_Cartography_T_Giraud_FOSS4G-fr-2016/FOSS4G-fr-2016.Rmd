@@ -1,0 +1,511 @@
+---
+title: "R pour les cartographes : le package `cartography`"
+date: "FOSS4G Paris - 2016"
+author: "Timothée Giraud  -  CNRS</br> e-mail :  [![mjsh](img/logo/emblem-mail.png)](mailto:timothee.giraud@ums-riate.fr) GitHub : [![](img/logo/GitHub-Mark-Light-32px.png)](https://github.com/rCarto) Blog : [![](img/logo/rsz_1hypo.png)](http://rgeomatic.hypotheses.org/)</br>[![](img/logo/riate.png)](http://www.ums-riate.fr)" 
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    lightbox: false
+    thumbnails: false
+    gallery: false
+    self_contained: no
+    
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE, 
+               fig.width=6)
+opts_knit$set(width=75)
+
+knit_hooks$set(par = function(before, options, envir){
+if (before){
+  par(mar=c(0,0,0,0))
+  } 
+})
+
+knit_hooks$set(par.title = function(before, options, envir){
+if (before){
+  par(mar=c(0,0,1.2,0))
+  } 
+})
+
+
+```
+
+# R
+
+- R est un langage et un environnement permettant de réaliser une variété de traitements statistiques et de représentations graphiques.  
+
+- R est un logiciel libre sous license GNU General Public License.  
+
+- R est multiplateforme (GNU/Linux, Windows, OS X...).
+
+![](img/Rlogo.png)
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+
+## Environment 
+
+- R Base : [R](https://www.r-project.org/)
+
+- Les packages : [The Comprehensive R Archive Network](http://cran.cc.uoc.gr/mirrors/CRAN/) (CRAN)
+
+- Environnement de développement intégré (IDE) : [RStudio](https://www.rstudio.com/)   
+[RStudio : sa vie, son oeuvre, ses ressources](https://elementr.hypotheses.org/237)
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+## Popularité et vitalité
+
+- Plus de 131 990 questions taggées R sur [StackOverflow](https://stackoverflow.com/questions/tagged/r)
+
+- Plus de 8 250 [packages](https://cran.rstudio.com/)
+
+- Langage préféré des *data scientists* ([LinkedIn](http://blog.revolutionanalytics.com/2015/11/new-surveys-show-continued-popularity-of-r.html))
+
+- Dépots les plus forkés sur [GitHub](http://githut.info/)
+
+- 5 *updates* in 2015
+
+- 174 [Local R User Groups](http://blog.revolutionanalytics.com/local-r-groups.html), dont 6 en France
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+# Les fonctionnalités spatiales
+Trois packages sont incontournables.
+
+## Le package `rgdal`, import/export d'objets spatiaux et gestion des projections cartographiques
+
+`rgdal` est une interface entre R et les librairies GDAL ([Geospatial Data Abstraction Library](http://www.gdal.org/)) et [PROJ4](https://github.com/OSGeo/proj.4).
+
+
+
+#### Import du shapefile des régions européennes (NUTS3) :
+```{r ImportShp, cache = TRUE}
+library("rgdal")
+nuts3 <- readOGR(dsn = "data", layer = "nuts3", verbose = TRUE)
+```
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+## Le package `sp`, manipulation et affichage d'objets spatiaux
+
+`sp` fournit des classes et des methodes pour les données spatiales dans R.
+
+
+#### Affichage des NUTS3 :
+```{r InspectSPDF, par = TRUE, cache = TRUE}
+library("sp")
+class(nuts3)
+nuts3@proj4string
+nuts3@bbox
+head(nuts3@data)
+plot(nuts3)
+plot(nuts3, col = "#DAE3E6", border = "#8A0641", lwd = 0.5)
+```
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+## Le package `rgeos`, géotraitements
+
+`rgeos` donne accès à la librairie d'opérations spatiales GEOS ([Geometry Engine - Open Source](http://trac.osgeo.org/geos/)) qui permet notamment d'effectuer les géotraitements suivants :  
+
+* Area / Perimeter 
+* Distances  
+* **Buffer**
+* Overlap / intersect / difference
+* Contains / within
+* Union
+* **Dissolve**
+* ...
+
+#### Agrégation des polygones / dissolve
+
+```{r dissolve, par = TRUE, cache = TRUE }
+library("rgeos")
+europe <- gUnaryUnion(spgeom = nuts3)
+plot(nuts3, lwd = 0.5)
+plot(europe, lwd = 2, border = "red", add=T)
+```
+
+#### Création de zones tampons / buffer
+```{r buffer, par = TRUE, cache = TRUE}
+library("rgeos")
+europeBuffer <- gBuffer(spgeom = europe, width = 50000)
+plot(europe, col = "#92C5D6")
+plot(europeBuffer, add = T, border = "red")
+```
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+## Mais aussi...
+Des liens sont possibles avec des **SIG** ou des **bases de données spatiales** :  
+
+* GRASS (`spgrass6`, `rgrass7`)  
+* QGIS (via Processing, anciennement sextante)  
+* ArcGis (`RPyGeo` via Python)   
+* PostGis / PostGreSQl (`RPostgreSQL`)  
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+# Le package `cartography`
+
+Conçu comme une boite à outil dédiée à la **cartographie thématique**, le package [`cartography`](https://cran.r-project.org/web/packages/cartography/index.html) est développé au sein de l'[UMS RIATE](http://www.ums-riate.fr) (CNRS, CGET, Université Paris Diderot) par Nicolas Lambert et Timothée Giraud. 
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+### Installation 
+La version stable est [sur le CRAN](https://cran.r-project.org/web/packages/cartography/index.html).
+
+```{r install, eval = FALSE, cache = TRUE}
+install.packages("cartography")
+```
+
+La version de développement est hébergée sur [GitHub](https://github.com/Groupe-ElementR/cartography).   
+```{r install2, eval = FALSE, cache = TRUE}
+require(devtools)
+devtools::install_github("Groupe-ElementR/cartography")
+```
+
+Vous pouvez nous faire remonter d’éventuels bugs [ici](https://github.com/Groupe-ElementR/cartography/issues/).
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+## Les données 
+Les exemples utilisent les jeux de données fournis avec le package. 
+Ces données portent sur les maillages régionaux européens [NUTS](http://ec.europa.eu/eurostat/fr/web/nuts/overview). 
+```{r cleaning, eval=TRUE, echo=FALSE, cache = FALSE}
+rm(list = ls())
+```
+
+```{r load, par.title = TRUE, cache = FALSE}
+# Chargement de la librairie
+library(cartography)
+
+# Import de données dans la session
+data(nuts2006)
+
+ls()
+```
+
+Les objets terminant par ".spdf"" sont des objets spatiaux et ceux terminant par ".df" sont des data frames. 
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+
+## Carte Choroplethes
+
+```{r choroMap, par.title = TRUE, cache = TRUE}
+# Calcul du taux de croissance annuel moyen
+nuts2.df$cagr <- 100 * (((nuts2.df$pop2008 / nuts2.df$pop1999)^(1/9)) - 1) 
+
+# Cartographie
+choroLayer(spdf = nuts2.spdf, df = nuts2.df, var = "cagr")
+title("Taux de croissance en Europe")
+```
+
+
+Après ce premier jet, il est ensuite possible de paramétrer très finement la carte : palette de couleurs, discrétisation, légende, couches d'habillage...
+
+```{r choroMap2, par.title = TRUE, cache = TRUE}
+# Construire une palette de couleurs
+cols <- carto.pal(pal1 = "green.pal", n1 = 2, 
+                  pal2 = "red.pal", n2 = 4) 
+
+# Affichage de couches d'habillage
+plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+
+# Cartographie du taux de croissance annuel moyen
+choroLayer(spdf = nuts2.spdf, df = nuts2.df, var = "cagr",#
+           breaks = c(-2.43,-1.0,0.0,0.5,1.0,2.0,3.1), 
+           col = cols,
+           border = "grey40",
+           lwd = 0.5, 
+           legend.pos = "right",
+           legend.title.txt = "taux de croissance\nannuel moyen", 
+           legend.values.rnd = 2, 
+           add = TRUE) 
+
+# Affichage de couches d'habillage
+plot(nuts0.spdf,border = "grey20", lwd=0.75, add=TRUE)
+
+# Ajout des titres, légende, sources, etc.
+layoutLayer(title = "Taux de croissance en Europe", 
+            author = "cartography", 
+            sources = "Eurostat, 2008", frame = TRUE, col = NA, 
+            scale = NULL,coltitle = "black",
+            south = TRUE) 
+
+```
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+## Cartes en symboles proportionnels
+
+```{r propMap, par.title = TRUE, cache = TRUE, fig.width=6}
+
+# Affichage de couches d'habillage
+plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+plot(nuts0.spdf, col = "#D1914D",border = "grey80", add=TRUE)
+
+# Cartographie de la population des pays en cercles proportionnels
+propSymbolsLayer(spdf = nuts0.spdf, df = nuts0.df,#
+                 var = "pop2008", 
+                 symbols = "circle", col =  "#920000",
+                 legend.pos = "right",
+                 legend.title.txt = "Total\npopulation (2008)",
+                 legend.style = "c")
+
+# Ajout des titres, légende, sources, etc.
+layoutLayer(title = "Countries Population in Europe",
+            author = "cartography",
+            sources = "Eurostat, 2008",
+            scale = NULL,
+            south = TRUE)
+```
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+## Cartes de flux
+
+Il s'agit de représenter des données, agrégées à un niveau régional, sur les jumelages entre villes. 
+```{r linkMap, par.title = TRUE, cache = TRUE}
+# Données sur les jumelages
+head(twincities)
+
+# Creation d'une couche de liens
+twincities.spdf <- getLinkLayer(spdf = nuts2.spdf, df = twincities) 
+
+# Affichage des liens créés
+plot(twincities.spdf, lwd = 0.2)
+
+# Affichage de couches d'habillage
+plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+plot(nuts2.spdf, col = "#D1914D",border = "grey80", add=TRUE)
+
+# Cartographie des liens
+gradLinkLayer(spdf = twincities.spdf, df = twincities,   #
+              spdfids = "i", spdfide = "j", dfids = "i", dfide = "j", 
+              var = "fij", 
+              breaks = c(2,5,15,20,30), 
+              lwd = c(0.1,1,4,10), 
+              col = "#92000090",
+              legend.pos = "right", legend.frame = TRUE,
+              legend.title.txt = "Number of Agreements\n(regional level)",
+              add = TRUE)
+
+# Ajout des titres, légende, sources, etc.
+layoutLayer(title = "International Twinning Agreements Between Cities", 
+            author = "cartography", 
+            sources = "Sources: Adam Ploszaj & Wikipedia, 2011",
+            scale = NULL, south = TRUE, frame = TRUE, col = NA, 
+            coltitle = "black")
+```
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+
+
+
+## Discontinuités
+
+```{r disc, par.title = TRUE, cache = TRUE}
+# Construction les polylignes des frontières inter-étatiques
+nuts0.contig.spdf <- getBorders(nuts0.spdf)
+
+plot(nuts0.spdf, bg = "#A6CAE0", col = "#D1914D",border = "grey80")
+plot(nuts0.contig.spdf, col = 1:nrow(nuts0.contig.spdf), lwd = 2, add=TRUE)
+
+head(nuts0.contig.spdf@data)
+
+# Calcul du PIB/habitant
+nuts0.df$gdpcap <- nuts0.df$gdppps2008/nuts0.df$pop2008*1000000
+
+# Affichage de couches d'habillage
+plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+
+# Cartographie du PIB/habitants
+choroLayer(spdf = nuts0.spdf, df = nuts0.df, var = "gdpcap", #
+           border = "grey80",
+           col = carto.pal(pal1 = "kaki.pal", n1 = 6), 
+           method = "quantile",
+           nclass = 6, add=TRUE, 
+           legend.pos = "right", 
+           legend.values.rnd = -2,
+           legend.title.txt = "GDP per Capita\n(in euros)")
+
+# Plot discontinuities
+discLayer(spdf = nuts0.contig.spdf, df = nuts0.df, var = "gdpcap", 
+          type = "rel", 
+          method = "equal", 
+          nclass = 4, 
+          threshold = 0.5, 
+          sizemin = 0.5, 
+          sizemax = 6, 
+          col="red",
+          legend.values.rnd = 1,
+          legend.title.txt = "Discontinuities in \nGDP per Capita\n(relative)",
+          legend.pos = "topright", 
+          add=TRUE)
+
+# Ajout des titres, légende, sources, etc.
+layoutLayer(title = "Wealth Disparities in Europe",
+            coltitle = "black", col = NA,
+            sources = "Eurostat, 2011", 
+            scale = NULL,
+            author = "cartography", 
+            frame = FALSE)
+
+```
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+
+
+## Carroyages
+
+```{r grid, par.title = TRUE, cache = TRUE}
+# Creation d'une grille régulière
+mygrid <- getGridLayer(spdf=nuts2.spdf, cellsize = 200000)
+
+# Affichage de la grille
+plot(mygrid$spdf)
+
+# Adaptation des données à la grille
+datagrid.df <- getGridData(x = mygrid, df = nuts2.df, var = "pop2008") 
+datagrid.df$densitykm <- datagrid.df$pop2008_density*1000*1000
+
+# Affichage de couches d'habillage
+plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+
+# Cartographie de la densité de population 
+choroLayer(spdf = mygrid$spdf,                         #
+           df = datagrid.df,
+           var = "densitykm", 
+           border = "grey80", 
+           col = carto.pal(pal1 = "wine.pal", n1 = 6), 
+           legend.pos = "topright",
+           method = "q6", add = TRUE,
+           legend.title.txt = "Population Density\n(inhabitant/km²)")
+
+# Ajout des titres, légende, sources, etc.
+layoutLayer(title = "Population Density", 
+            coltitle = "black", col = NA,
+            sources = "Eurostat, 2011", scale = NULL, 
+            author = "cartography", frame = FALSE)
+```
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+## Cartes lissées
+
+
+```{r smooth, par.title = TRUE, cache = TRUE}
+# Affichage de couches d'habillage
+plot(nuts0.spdf, border = NA, col = NA, bg = "#A6CAE0")#
+plot(world.spdf, col  = "#E3DEBF", border=NA, add=TRUE)
+
+nuts3.df$gdppps2008 <- nuts3.df$gdppps2008 * 1000000
+
+# Cartographie des potentiels de PIB/Hab
+smoothLayer(spdf = nuts3.spdf, df = nuts3.df, var = 'gdppps2008', 
+            var2 = 'pop2008',
+            span = 75000, beta = 2, 
+            mask = nuts0.spdf, 
+            legend.title.txt = "Potential\nGDP per capita",
+            add = TRUE,
+            legend.pos = "topright", legend.values.rnd = -2)  
+
+# Ajouter un court text sur la carte
+text(x = 6271272, y = 3743765, 
+     labels = "Distance function:\n- type = exponential\n- beta = 2\n- span = 75 km", 
+     cex = 0.8, adj = 0, font = 3)
+
+# Ajout des titres, légende, sources, etc.
+layoutLayer(title = "Wealth Inequality in Europe", 
+            sources = "Basemap: UMS RIATE, 2015 - Data: Eurostat, 2008",
+            author = "T. Giraud, 2015")
+
+
+
+
+
+```
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+## Fonds de carte OpenStreetMap
+
+
+
+```{r osm, par = TRUE, cache = TRUE, fig.width=5, fig.height=5}
+data("nuts2006")
+# extract Denmark
+spdf <- nuts0.spdf[nuts0.spdf$id=="DK",]   
+# Download the tiles, extent = Denmark 
+den <- getTiles(spdf = spdf, type = "osmtransport", crop = TRUE, zoom = 7)
+class(den)
+# Plot the tiles
+tilesLayer(den)
+# Plot countries
+plot(spdf, border = "red", lwd = 2, add=TRUE)
+# Map tiles sources
+mtext(text = "Map data © OpenStreetMap contributors, under CC BY SA.",
+      side = 1, adj = 0, cex = 0.7, font = 3, line = -2)
+
+```
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+# Quelques ressources en ligne
+
+* [R-sig-Geo Mailing list](https://stat.ethz.ch/mailman/listinfo/r-sig-geo) *R Special Interest Group on using Geographical data and Mapping*.  
+*Mailing list* dédiée aux discussions sur l'utilisation des packages et données géographiques dans R  
+* [CRAN Task View: Analysis of Spatial Data](https://cran.r-project.org/web/views/Spatial.html)  
+Suivi des packages portant sur l'analyse des données spatiales.
+* [R-bloggers](http://www.r-bloggers.com/)  
+Agrégateur de blogs sur R, généraliste mais les post géographiques sont assez fréquents.  
+* [Bivand, R.S., Pebesma, E.J., and Gomez-Rubio, V. (2013). *Applied spatial data analysis with R*. 2nd ed. New York: Springer-Verlag.](http://link.springer.com/book/10.1007/978-1-4614-7618-4)  
+Ouvrage de référence sur l'analyse de données spatiales avec R.     
+* [Le Groupe ElementR](http://elementr.hypotheses.org/)  
+Les activités de ce groupe consistent à organiser des séances de formation et à produire des matériaux pédagogiques sur l’utilisation du logiciel R en sciences humaines et sociales. Exemples de séances :  
+    * Recherche reproductible et création de packages   
+    * Régression multiniveaux  
+    * Analyse de flux et modèles gravitaires  
+    * Analyse de données spatio-temporelles  
+    * Cartographie de flux  
+    * Créer des applications interactives avec R et shiny
+    * Analyse de rasters  
+    * Extraction de contenus web - web scraping
+* [ElementR, G. (2014). *R et espace: traitement de l'information géographique*. Framasoft.](http://framabook.org/r-et-espace/)  
+Ouvrage du Groupe ElementR.  
+* [Lambert, N., Zanin, C. (2016). *Manuel de cartographie - Principes, méthodes, applications*. Armand Colin.](http://www.armand-colin.com/manuel-de-cartographie-principes-methodes-applications-9782200612856)  
+Manuel de cartographie.  
+
+
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+#### Merci de votre attention! 
+
+Le package sur GitHub : [https://github.com/Groupe-ElementR/cartography/](https://github.com/Groupe-ElementR/cartography/)  
+
+Carnet de recherche R Géomatique : [http://rgeomatic.hypotheses.org/](http://rgeomatic.hypotheses.org/)  
+
+Cette présentation : [http://wukan.ums-riate.fr/FOSS4G-fr-2016/FOSS4G-fr-2016.html](http://wukan.ums-riate.fr/FOSS4G-fr-2016/FOSS4G-fr-2016.html)
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
