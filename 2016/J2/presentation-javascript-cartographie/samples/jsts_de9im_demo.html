@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset=utf-8>
+  <meta name=description content="">
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <script src="../node_modules/jsonix/jsonix.js"></script>
+  <script src="../node_modules/w3c-schemas/lib/XLink_1_0.js"></script>
+  <script src="../node_modules/ogc-schemas/lib/OWS_2_0.js"></script>
+  <script src="../node_modules/ogc-schemas/lib/WPS_2_0.js"></script>
+  <script src="../scripts/pouchdb.min.js"></script>
+  <script src="../scripts/pouchdb.quick-search.min.js"></script>
+</head>
+<body>
+<script>
+
+var pouch = new PouchDB('mydb');
+
+var context =  new Jsonix.Context([XLink_1_0, OWS_2_0, WPS_2_0]);
+var unmarshaller = context.createUnmarshaller();
+
+fetch('../data/wps_get_capabilities_zoo.xml').then(function(response) {
+  return response.text();
+}).then(function(text) {
+  var result = unmarshaller.unmarshalString(text);
+  console.log(result.value.operationsMetadata.operation.map(function(el) {
+    return el.name;
+  }));
+  var to_index = result.value.contents.processSummary.map(function(el) {
+    return {
+      abstract: el._abstract[0].value,
+      _id: el.identifier.value,
+      title: el.title[0].value
+    }
+  });
+  pouch.bulkDocs({docs: to_index}).then(function () {
+    return pouch.search({
+      query: 'OSM',
+      fields: ['title', 'abstract'],
+      include_docs: true,
+      highlighting: true
+    });
+  }).then(function (res) {
+    console.log(res.rows[0].doc.text); // "It's-a me, Mario!"
+    console.log(res.rows[0].highlighting); // {"text": "It's-a me, <strong>Mario</strong>!"}
+  });
+});
+
+</script>
+</body>
+</html>

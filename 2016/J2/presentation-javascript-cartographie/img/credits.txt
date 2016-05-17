@@ -1,0 +1,6 @@
+* [logo JavaScript non officiel](https://commons.wikimedia.org/wiki/File:Unofficial_JavaScript_logo_2.svg) de Wikimedia Commons
+* [Article Ajax](http://adaptivepath.org/ideas/ajax-new-approach-web-applications/) de Jesse James Garrett de la société Adaptative Path (18 Février 2005)
+* Logo Leaflet SVG https://github.com/Leaflet/Leaflet/blob/master/src/images/logo.svg
+* Logo OpenLayers 3 SVG https://github.com/openlayers/openlayers.github.io/blob/build/assets/logo.svg
+* Logo Cesium https://github.com/AnalyticalGraphicsInc/cesium/blob/master/logo.png
+* Logo D3 https://github.com/d3/d3-logo
